@@ -4,11 +4,17 @@ import os
 import asyncio
 
 bot = commands.Bot(command_prefix="!")
-
+target_channel_id = 1111186051520790550
 # Event handler for when the bot is ready
 @bot.event
 async def on_ready():
-    print(f"Bot is ready logged in as {bot.user.name}")
+    print(f"Bot is ready. Logged in as {bot.user.name}")
+    target_channel = bot.get_channel(target_channel_id)
+    if target_channel:
+        await target_channel.send("Bot connected to the target channel.")
+    else:
+        print(f"Failed to find the target channel with ID: {target_channel_id}")
+
 
 @bot.command()
 async def hello(ctx):
@@ -74,7 +80,9 @@ async def on_message(message):
         return
 
     if message.content.lower().startswith("hi"):
-        await message.channel.send("Hello!")
+        target_channel = bot.get_channel(target_channel_id)
+        if target_channel:
+            await target_channel.send("Hello!")
 
     await bot.process_commands(message)
 
