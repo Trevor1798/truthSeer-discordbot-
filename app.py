@@ -3,8 +3,12 @@ from discord.ext import commands
 import os
 import asyncio
 
-bot = commands.Bot(command_prefix="!")
 target_channel_id = 1111186051520790550
+
+intents = discord.Intents.default()
+intents.guilds = True
+intents.messages = True
+bot = commands.Bot(command_prefix="!", intents=intents)
 # Event handler for when the bot is ready
 @bot.event
 async def on_ready():
