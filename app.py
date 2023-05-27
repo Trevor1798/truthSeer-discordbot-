@@ -8,11 +8,12 @@ target_channel_id = 1111186051520790550
 intents = discord.Intents.default()
 intents.guilds = True
 intents.messages = True
+intents.message_contents = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 # Event handler for when the bot is ready
 @bot.event
 async def on_ready():
-    print(f"Bot is ready. Logged in as {bot.user.name}")
+    print(f"Bot is ready. Logged in as")
     target_channel = bot.get_channel(target_channel_id)
     if target_channel:
         await target_channel.send("Bot connected to the target channel.")
