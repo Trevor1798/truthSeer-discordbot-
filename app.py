@@ -36,9 +36,9 @@ async def whatareyoudoing(ctx):
 @bot.command()
 async def whatsup(ctx):
     await ctx.send("Me?")
-    await asyncio.sleep(5)  # Wait for 5 seconds
+    await asyncio.sleep(2)  # Wait for 5 seconds
     await ctx.send("Nothing...")
-    await asyncio.sleep(10)  # Wait for another 10 seconds
+    await asyncio.sleep(2)  # Wait for another 10 seconds
     await ctx.send("Just hanging around")
 
 @bot.command()
