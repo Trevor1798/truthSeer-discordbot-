@@ -4,7 +4,7 @@ import os
 import asyncio
 
 target_channel_id = 1111186051520790550
-
+BOT_TOKEN = "MTExMTgyNTgyMzM1MjIzNDA3NA.Gp6egi.5lK_puEPjEtPkJrlpalFkYrZuFlgGTIzDVCvKU"
 intents = discord.Intents.default()
 intents.guilds = True
 intents.messages = True
@@ -91,4 +91,4 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-bot.run(os.environ["BOT_TOKEN"])
+bot.run(os.environ[BOT_TOKEN])
