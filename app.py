@@ -65,7 +65,7 @@ async def Trev(ctx):
     await ctx.send("Trev is a person who defies conventional descriptions. There's no single line that can truly capture the essence of who he is, except for the simple fact that he is 'him.' With a unique blend of qualities, experiences, and perspectives, Trev is an individual like no other, constantly defying expectations and bringing his own authentic self to everything he does.")
 
 @bot.command()
-async def help(ctx):
+async def command_help(ctx):
     help_message = "Here are the available commands:\n"
     help_message += "!hello - Greet the bot\n"
     help_message += "!whatareyoudoing - Check what the bot is doing\n"
