@@ -3,7 +3,6 @@ from discord.ext import commands
 import os
 import asyncio
 
-bot_token = os.environ.get("BOT_TOKEN")
 bot = commands.Bot(command_prefix="!")
 
 # Event handler for when the bot is ready
@@ -79,4 +78,4 @@ async def on_message(message):
 
     await bot.process_commands(message)
 
-bot.run(bot_token)
+bot.run(os.environ["BOT_TOKEN"])
