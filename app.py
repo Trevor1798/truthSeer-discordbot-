@@ -40,7 +40,9 @@ async def weather(ctx, city):
             await ctx.send(f"Shiiiiiit the current weather in {city}: {weather_description}. Temperature: {temperature}°F. Humidity: {humidity}. Wind speed: {wind_speed} m/s.")
         else:
             await ctx.send("Failed to fetch weather information")
-
+    else:
+        await ctx.send("City not included in this API bozo, this the free tier")
+    
 
 # Event handler for when the bot is ready
 @bot.event
