@@ -30,16 +30,16 @@ async def weather(ctx, city):
     weather_data = response.json()
 
     print(weather_data)
+    if 'main' in weather_data:
+        temperature = weather_data["main"]["temp"]
+        humidity = weather_data["main"]["humidity"]
+        wind_speed = weather_data["wind"]["speed"]
+        weather_description = weather_data["weather"][0]["description"]
     
-    temperature = weather_data["main"]["temp"]
-    humidity = weather_data["main"]["humidity"]
-    wind_speed = weather_data["wind"]["speed"]
-    weather_description = weather_data["weather"][0]["description"]
-    
-    if response.status_code == 200:
-        await ctx.send(f"Shiiiiiit the current weather in {city}: {weather_description}. Temperature: {temperature}°F. Humidity: {humidity}. Wind speed: {wind_speed} m/s.")
-    else:
-        await ctx.send("Failed to fetch weather information")
+        if response.status_code == 200:
+            await ctx.send(f"Shiiiiiit the current weather in {city}: {weather_description}. Temperature: {temperature}°F. Humidity: {humidity}. Wind speed: {wind_speed} m/s.")
+        else:
+            await ctx.send("Failed to fetch weather information")
 
 
 # Event handler for when the bot is ready
