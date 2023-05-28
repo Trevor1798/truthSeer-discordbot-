@@ -135,7 +135,7 @@ async def command_help(ctx):
     help_message += "!Trev - Discover the indescribable essence of Trev, a person who defies conventional descriptions\n"
     help_message += "!Sam - Learn about Sam, an exceptional individual who is simply the best\n" 
     help_message += "!weather 'city' - check the weather of any city included in the free tier of this api\n"
-    help_message += "!joke ('category) - pick a joke from a category there's Programming, Misc, Dark, Pun, Spooky, Christmas"
+    help_message += "!joke ('category) - pick a joke from a category there's Programming, Misc, Dark, Pun, Spooky, Christmas\n"
     help_message += "!help - Display this help message"
 
 
