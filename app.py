@@ -42,7 +42,39 @@ async def weather(ctx, city):
             await ctx.send("Failed to fetch weather information")
     else:
         await ctx.send("City not included in this API bozo, this the free tier")
-    
+
+
+#Cat API function
+@bot.command()
+async def cat(ctx):
+    api_key = os.environ.get("CAT_API_KEY")
+    headers = {
+        "x-api-key": api_key
+    }
+    url = "https://api.thecatapi.com/v1/images/search"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        image_url = data[0]["url"]
+        await ctx.send(image_url)
+    else:
+        await ctx.send("Failed to fetch the cat image")
+@bot.command()
+async def kitty10x(ctx):
+    api_key = os.environ.get("CAT_API_KEY")
+    headers = {
+        "x-api-key": api_key
+    }
+    url = "https://api.thecatapi.com/v1/images/search?limit=10"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        cat_image = data[0]["url"]
+        await ctx.send(cat_image)
+    else:
+        await ctx.send("Maybe 10 is to many right neow")
+
+#Joke API function    
 @bot.command()
 async def joke(ctx, category="Any"):
     url = f"https://v2.jokeapi.dev/joke/{category}"
@@ -136,8 +168,8 @@ async def command_help(ctx):
     help_message += "!Sam - Learn about Sam, an exceptional individual who is simply the best\n" 
     help_message += "!weather ('city') - check the weather of any city included in the free tier of this api\n"
     help_message += "!joke ('category') - pick a joke from a category there's Programming, Misc, Dark, Pun, Spooky, Christmas\n"
+    help_message += "!cat"
     help_message += "!help - Display this help message"
-
 
     await ctx.send(help_message)
 
