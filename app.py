@@ -29,7 +29,8 @@ async def weather(ctx, city):
     response = requests.get(BASE_URL, params=params)
     weather_data = response.json()
 
-
+    print(weather_data)
+    
     temperature = weather_data["main"]["temp"]
     humidity = weather_data["main"]["humidity"]
     wind_speed = weather_data["wind"]["speed"]
