@@ -2,6 +2,10 @@ import discord
 from discord.ext import commands
 import os
 import asyncio
+import requests
+
+
+
 
 target_channel_id = 1111186051520790550
 
@@ -10,6 +14,31 @@ intents.guilds = True
 intents.messages = True
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
+
+WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
+BASE_URL = os.environ.get("WEATHER_API_URL")
+
+async def get_weather(ctx, city):
+    params = {
+        'q': city,
+        'appid': WEATHER_KEY,
+        'units': 'imperial'
+    }
+    response = requests.get(BASE_URL, params=params)
+    weather_data = response.json()
+
+
+    temperature = weather_data["main"]["temp"]
+    humidity = weather_data["main"]["humidity"]
+    wind_speed = weather_data["wind"]["speed"]
+    weather_description = weather_data["weather"][0]["description"]
+    
+    if response.status_code == 200:
+        await ctx.send(f"Shiiiiiit the current weather in {city}: {weather_description}. Temperature: {temperature}°F. Humidity: {humidity}. Wind speed: {wind_speed} m/s.")
+    else:
+        await ctx.send("Failed to fetch weather information")
+
+
 # Event handler for when the bot is ready
 @bot.event
 async def on_ready():
@@ -47,7 +76,7 @@ async def Jay(ctx):
 
 @bot.command()
 async def Frank(ctx):
-    await ctx.send("Frank is an exceptional individual who has left an indelible mark on the world of esports as a legendary two-time champion. With his extraordinary skills, dedication, and strategic prowess, he has etched his name in the annals of competitive gaming history. Frank's unparalleled talent and relentless drive propelled him to the pinnacle of success, where he claimed victory in not just one, but two significant esports championships. His mastery of the game, combined with his strategic thinking and quick reflexes, allowed him to outshine his opponents and lead his team to triumph. As a retired champion, Frank's legacy lives on, serving as an inspiration for aspiring gamers and a testament to the heights that can be reached through unwavering determination and passion. Beyond his competitive achievements, Frank's humble nature and sportsmanship have endeared him to fans and fellow gamers alike. He remains a respected figure in the esports community, and his impact will be remembered for years to come.")
+    await ctx.send("Frank is an extraordinary individual who has solidified his place in the world of esports as a revered multi-title champion. His exceptional skills, unwavering dedication, and strategic brilliance have propelled him to the pinnacle of competitive gaming. With a string of victories under his belt, Frank has led his teammates to numerous triumphs, demonstrating his ability to inspire and guide his fellow players to greatness. As the best in-game leader (IGL) in the industry, Frank's strategic thinking, tactical expertise, and exceptional decision-making have set him apart from his peers. He has masterfully orchestrated his team's gameplay, ensuring flawless coordination and leading them to victory. Beyond his remarkable accomplishments, Frank's humility and sportsmanship have endeared him to fans and fellow gamers alike, making him a highly respected figure in the esports community. His legacy serves as a constant inspiration for aspiring gamers, showcasing the heights that can be reached through unwavering determination and a passion for excellence.")
 
 @bot.command()
 async def Vam(ctx):
@@ -65,6 +94,13 @@ async def Trev(ctx):
     await ctx.send("Trev is a person who defies conventional descriptions. There's no single line that can truly capture the essence of who he is, except for the simple fact that he is 'him.' With a unique blend of qualities, experiences, and perspectives, Trev is an individual like no other, constantly defying expectations and bringing his own authentic self to everything he does.")
 
 @bot.command()
+async def Sam(ctx):
+    await ctx.send("Sam is an exceptional individual who encompasses the qualities of the greatest artist, animal lover, and caring person all rolled into one. As an incredibly talented writer, Sam weaves words together with mastery, creating captivating stories and evoking emotions within readers. Through her artistry, she transports people to new worlds and sparks their imaginations. Sam's love for animals knows no bounds. She devotes her time and energy to advocating for animal rights, rescuing and providing a safe haven for furry companions, and promoting their well-being. Her compassion extends beyond animals, as she consistently demonstrates a caring and selfless nature towards others. Sam has a heart of gold, always offering support, empathy, and encouragement to those around her. Her wholesome and genuine character brightens the lives of everyone she encounters. Sam is undoubtedly the best person one could have the privilege of knowing and cherishing.")
+
+
+#turbulence
+
+@bot.command()
 async def command_help(ctx):
     help_message = "Here are the available commands:\n"
     help_message += "!hello - Greet the bot\n"
@@ -75,7 +111,9 @@ async def command_help(ctx):
     help_message += "!Vam - Explore the accomplishments of Vam, the best options trader and osu player of all time\n"
     help_message += "!Chris - Learn about Chris, a hilarious storyteller, anime and OG games expert, and future goated programmer\n"
     help_message += "!Trev - Discover the indescribable essence of Trev, a person who defies conventional descriptions\n"
+    help_message += "!Sam - Learn about Sam, an exceptional individual who is simply the best\n" 
     help_message += "!help - Display this help message"
+
 
     await ctx.send(help_message)
 
