@@ -18,7 +18,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
 
-
+#Weather API function
 @bot.command()
 async def weather(ctx, city):
     params = {
@@ -43,6 +43,23 @@ async def weather(ctx, city):
     else:
         await ctx.send("City not included in this API bozo, this the free tier")
     
+@bot.command()
+async def joke(ctx, category="Any"):
+    url = f"https://v2.jokeapi.dev/joke/{category}"
+    response = requests.get(url)
+    joke_data = response.json()
+
+    if response.status_code == 200:
+        if joke_data["type"] == "single":
+            joke = joke_data["joke"]
+        else:
+            joke = f"{joke_data['setup'] {joke_data['delivery']}}"
+        await ctx.send(joke)
+    else:
+        await ctx.send("Failed to fetch that one, maybe you dont deserve to hear it")
+
+
+
 
 # Event handler for when the bot is ready
 @bot.event
