@@ -53,7 +53,7 @@ async def joke(ctx, category="Any"):
         if joke_data["type"] == "single":
             joke = joke_data["joke"]
         else:
-            joke = f"{joke_data['setup'] {joke_data['delivery']}}"
+            joke = f"{joke_data['setup']} {joke_data['delivery']}"
         await ctx.send(joke)
     else:
         await ctx.send("Failed to fetch that one, maybe you dont deserve to hear it")
