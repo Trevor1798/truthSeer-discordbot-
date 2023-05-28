@@ -112,11 +112,12 @@ async def command_help(ctx):
     help_message += "!whatareyoudoing - Check what the bot is doing\n"
     help_message += "!whatsup - Check what the bot is up to\n"
     help_message += "!Jay - Learn about Jay, a remarkable individual who embodies the qualities of a true sigma and an alpha male\n"
-    help_message += "!Frank - Discover more about Frank, a legendary two-time esports champion who has retired\n"
+    help_message += "!Frank - Discover more about Frank, a legendary multi-title esports champion who has retired\n"
     help_message += "!Vam - Explore the accomplishments of Vam, the best options trader and osu player of all time\n"
     help_message += "!Chris - Learn about Chris, a hilarious storyteller, anime and OG games expert, and future goated programmer\n"
     help_message += "!Trev - Discover the indescribable essence of Trev, a person who defies conventional descriptions\n"
     help_message += "!Sam - Learn about Sam, an exceptional individual who is simply the best\n" 
+    help_message += "!weather 'city'- check the weather of any city included in the free tier of this api\n"
     help_message += "!help - Display this help message"
 
 
