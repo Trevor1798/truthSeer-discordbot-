@@ -18,7 +18,9 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
 
-async def get_weather(ctx, city):
+
+@bot.command()
+async def weather(ctx, city):
     params = {
         'q': city,
         'appid': WEATHER_KEY,
