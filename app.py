@@ -24,18 +24,34 @@ BASE_URL = os.environ.get("WEATHER_API_URL")
 
 @bot.command()
 async def SPY(ctx):
-    spy = yf.Ticker("SPY")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-
+    try:
+        spy = yf.Ticker("SPY")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for SPY")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+        
 @bot.command()
 async def QQQ(ctx):
     spy = yf.Ticker("QQQ")
