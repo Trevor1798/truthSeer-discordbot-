@@ -25,11 +25,225 @@ BASE_URL = os.environ.get("WEATHER_API_URL")
 @bot.command()
 async def SPY(ctx):
     spy = yf.Ticker("SPY")
-    data = spy.history(period="id")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
     current_price = data["Close"].iloc[-1]
-    await ctx.send(f"SPY's:  {current_price}")
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+
+@bot.command()
+async def QQQ(ctx):
+    spy = yf.Ticker("QQQ")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+@bot.command()
+async def TSLA(ctx):
+    spy = yf.Ticker("TSLA")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+@bot.command()
+async def AMZN(ctx):
+    spy = yf.Ticker("AMZN")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+@bot.command()
+async def BA(ctx):
+    spy = yf.Ticker("BA")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+@bot.command()
+async def NVDA(ctx):
+    spy = yf.Ticker("NVDA")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+@bot.command()
+async def GME(ctx):
+    spy = yf.Ticker("GME")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+
+@bot.command()
+async def GOOGLE(ctx):
+    spy = yf.Ticker("GOOGLE")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+    
+@bot.command()
+async def AAPL(ctx):
+    spy = yf.Ticker("AAPL")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+    
+@bot.command()
+async def META(ctx):
+    spy = yf.Ticker("META")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+    
+@bot.command()
+async def DIS(ctx):
+    spy = yf.Ticker("DIS")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+    
+@bot.command()
+async def NFLX(ctx):
+    spy = yf.Ticker("NFLX")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+    
+@bot.command()
+async def AMD(ctx):
+    spy = yf.Ticker("AMD")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
+    
+@bot.command()
+async def HD(ctx):
+    spy = yf.Ticker("HD")
+    data = spy.history(period="15m")
+    daily_open = data["Open"].iloc[0]
+    current_high = data["High"].max()
+    current_price = data["Close"].iloc[-1]
+    previous_price = data["Close"].iloc[-2]
+    await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                   f"Current High of the Day: {current_high}\n"
+                   f"Current price (15 min): {current_price}\n"
+                   f"Previous price (15 min): {previous_price}"  
+                   )
 
 
+@bot.command()
+async def StockWatch(ctx):
+ await ctx.send(f"""Hello! I've built sort of a small list of multiple different popular stocks from the market,\n
+                    these are commonly traded and also some of my favorites \n
+                    they'll include information about the daily opening price, current high of the day, current price, and previous price following the 15 minute chart.\n
+                    Here's a list of the Symbols you can query for (type them in exactly like this):
+                    !WatchList - this'll return information from every symbol all at once
+                    !SPY
+                    !QQQ
+                    !TSLA
+                    !AMZN
+                    !BA
+                    !NVDA
+                    !GME
+                    !GOOGLE
+                    !AAPL
+                    !META
+                    !DIS
+                    !NFLX
+                    !AMD
+                    !HD
+                    """)
+
+@bot.command()
+async def WatchList(ctx):
+    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGLE", "AAPL", "META", "DIS", "NFLX", "AMD", "HD"]
+    for tick in tickers:
+        data = yf.Ticker(tick).history(period="15m")
+        current_price = data.history().tail(1)["Close"].values[0]
+        await ctx.send(f"{tick}: {current_price}")
 
 #Weather API function
 @bot.command()
