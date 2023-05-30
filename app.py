@@ -3,6 +3,7 @@ from discord.ext import commands
 import os
 import asyncio
 import requests
+import yfinance as yf
 
 
 
@@ -17,6 +18,18 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 
 WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
+
+
+#SPY fetcher
+
+@bot.command()
+async def SPY(ctx):
+    spy = yf.Ticker("SPY")
+    data = spy.history(period="id")
+    current_price = data["Close"].iloc[-1]
+    await ctx.send(f"SPY's:  {current_price}")
+
+
 
 #Weather API function
 @bot.command()
@@ -163,7 +176,7 @@ async def command_help(ctx):
     help_message += "!weather ('city') - check the weather of any city included in the free tier of this api\n"
     help_message += "!joke ('category') - pick a joke from a category there's Programming, Misc, Dark, Pun, Spooky, Christmas\n"
     help_message += "!cat - randomly generate a cat image\n"
-    help_message += "!kitty10x - randomly generate 10 cat images\n"
+    help_message += "!SPY - query for the current price of SPY"
     help_message += "!Jay - Learn about Jay, a remarkable individual who embodies the qualities of a true sigma and an alpha male\n"
     help_message += "!Frank - Discover more about Frank, a legendary multi-title esports champion who has retired\n"
     help_message += "!Vam - Explore the accomplishments of Vam, the best options trader and osu player of all time\n"
