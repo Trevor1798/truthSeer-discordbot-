@@ -42,10 +42,10 @@ async def SPY(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for SPY")
@@ -75,10 +75,10 @@ async def QQQ(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for QQQ")
@@ -109,10 +109,10 @@ async def TSLA(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for TSLA")
@@ -142,10 +142,10 @@ async def AMZN(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for AMZN")
@@ -175,10 +175,10 @@ async def BA(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for BA")
@@ -208,10 +208,10 @@ async def NVDA(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for NVDA")
@@ -241,10 +241,10 @@ async def GME(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for GME")
@@ -274,10 +274,10 @@ async def GOOGL(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for GOOGL")
@@ -307,10 +307,10 @@ async def AAPL(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for AAPL")
@@ -340,10 +340,10 @@ async def FB(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for FB")
@@ -373,10 +373,10 @@ async def DIS(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for DIS")
@@ -406,10 +406,10 @@ async def NFLX(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for NFLX")
@@ -439,10 +439,10 @@ async def AMD(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for AMD")
@@ -470,10 +470,10 @@ async def HD(ctx):
             else:
                 current_price = "N/A"
             
-            await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                           f"Current High of the Day: {current_high}\n"
-                           f"Current price (15 min): {current_price}\n"
-                           f"Previous price (15 min): {previous_price}"  
+            await ctx.send(f"Daily Opening Price: {daily_open:.2f}\n"
+                           f"Current High of the Day: {current_high:.2f}\n"
+                           f"Current price (15 min): {current_price:.2f}\n"
+                           f"Previous price (15 min): {previous_price:.2f}"  
                            )
         else:
             await ctx.send("No data available for HD")
@@ -487,7 +487,7 @@ async def StockWatch(ctx):
  await ctx.send(f"""Hello! I've built sort of a small list of multiple different popular stocks from the market,\n
                     these are commonly traded and also some of my favorites \n
                     they'll include information about the daily opening price, current high of the day, current price, and previous price following the 15 minute chart.\n
-                    Here's a list of the Symbols you can query for (type them in exactly like this):
+                    Here's a list of the Symbols you can query for (type them in exactly like this): \n
                     !WatchList - this'll return information from every symbol all at once
                     !SPY
                     !QQQ
@@ -510,8 +510,11 @@ async def WatchList(ctx):
     tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "FB", "DIS", "NFLX", "AMD", "HD"]
     for tick in tickers:
         data = yf.Ticker(tick).history(period="15m")
-        current_price = data.history().tail(1)["Close"].values[0]
-        await ctx.send(f"{tick}: {current_price}")
+        if not data.empty:
+            current_price = data["Close"].iloc[-1]
+            await ctx.send(f"{tick}: {current_price:.2f}")
+        else:
+            await ctx.send(f"No data available for {tick}")
 
 #Weather API function
 @bot.command()
