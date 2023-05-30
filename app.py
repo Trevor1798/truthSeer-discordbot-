@@ -51,184 +51,436 @@ async def SPY(ctx):
             await ctx.send("No data available for SPY")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
-        
+
+
+
+
 @bot.command()
 async def QQQ(ctx):
-    spy = yf.Ticker("QQQ")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
+    try:
+        spy = yf.Ticker("QQQ")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for QQQ")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+
 @bot.command()
 async def TSLA(ctx):
-    spy = yf.Ticker("TSLA")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
+    try:
+        spy = yf.Ticker("TSLA")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for TSLA")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def AMZN(ctx):
-    spy = yf.Ticker("AMZN")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
+    try:
+        spy = yf.Ticker("AMZN")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for AMZN")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def BA(ctx):
-    spy = yf.Ticker("BA")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
+    try:
+        spy = yf.Ticker("BA")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for BA")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def NVDA(ctx):
-    spy = yf.Ticker("NVDA")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
+    try:
+        spy = yf.Ticker("NVDA")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for NVDA")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def GME(ctx):
-    spy = yf.Ticker("GME")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
+    try:
+        spy = yf.Ticker("GME")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for GME")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
 
 @bot.command()
-async def GOOGLE(ctx):
-    spy = yf.Ticker("GOOGLE")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-    
+async def GOOGL(ctx):
+    try:
+        spy = yf.Ticker("GOOGL")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for GOOGL")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def AAPL(ctx):
-    spy = yf.Ticker("AAPL")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-    
+    try:
+        spy = yf.Ticker("AAPL")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for AAPL")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
-async def META(ctx):
-    spy = yf.Ticker("META")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-    
+async def FB(ctx):
+    try:
+        spy = yf.Ticker("FB")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for FB")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def DIS(ctx):
-    spy = yf.Ticker("DIS")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-    
+    try:
+        spy = yf.Ticker("DIS")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for DIS")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def NFLX(ctx):
-    spy = yf.Ticker("NFLX")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-    
+    try:
+        spy = yf.Ticker("NFLX")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for NFLX")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
 @bot.command()
 async def AMD(ctx):
-    spy = yf.Ticker("AMD")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-    
+    try:
+        spy = yf.Ticker("AMD")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for AMD")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
+
 @bot.command()
 async def HD(ctx):
-    spy = yf.Ticker("HD")
-    data = spy.history(period="15m")
-    daily_open = data["Open"].iloc[0]
-    current_high = data["High"].max()
-    current_price = data["Close"].iloc[-1]
-    previous_price = data["Close"].iloc[-2]
-    await ctx.send(f"Daily Opening Price: {daily_open}\n"
-                   f"Current High of the Day: {current_high}\n"
-                   f"Current price (15 min): {current_price}\n"
-                   f"Previous price (15 min): {previous_price}"  
-                   )
-
+    try:
+        spy = yf.Ticker("HD")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+            
+            await ctx.send(f"Daily Opening Price: {daily_open}\n"
+                           f"Current High of the Day: {current_high}\n"
+                           f"Current price (15 min): {current_price}\n"
+                           f"Previous price (15 min): {previous_price}"  
+                           )
+        else:
+            await ctx.send("No data available for HD")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+        
+ 
 
 @bot.command()
 async def StockWatch(ctx):
@@ -246,7 +498,7 @@ async def StockWatch(ctx):
                     !GME
                     !GOOGLE
                     !AAPL
-                    !META
+                    !FB
                     !DIS
                     !NFLX
                     !AMD
@@ -255,7 +507,7 @@ async def StockWatch(ctx):
 
 @bot.command()
 async def WatchList(ctx):
-    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGLE", "AAPL", "META", "DIS", "NFLX", "AMD", "HD"]
+    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "FB", "DIS", "NFLX", "AMD", "HD"]
     for tick in tickers:
         data = yf.Ticker(tick).history(period="15m")
         current_price = data.history().tail(1)["Close"].values[0]
@@ -403,7 +655,7 @@ async def command_help(ctx):
     help_message += "!hello - Greet the bot\n"
     help_message += "!whatareyoudoing - Check what the bot is doing\n"
     help_message += "!whatsup - Check what the bot is up to\n"
-    help_message += "!WatchList - Look at a bunch of different options for querying stocks\n"
+    help_message += "!StockWatch - Look at a bunch of different options for querying stocks\n"
     help_message += "!weather ('city') - check the weather of any city included in the free tier of this api\n"
     help_message += "!joke ('category') - pick a joke from a category there's Programming, Misc, Dark, Pun, Spooky, Christmas\n"
     help_message += "!cat - randomly generate a cat image\n"
