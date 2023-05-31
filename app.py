@@ -37,11 +37,6 @@ async def t(ctx, ticker):
             daily_open = data["Open"].iloc[0]
             current_high = data["High"].max()
 
-            if data.shape[0] >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = None
-
             if len(data) >= 1:
                 current_price = data["Close"].iloc[-1]
             else:
@@ -50,23 +45,18 @@ async def t(ctx, ticker):
             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
                           f"Current High of the Day: ${current_high:.2f}\n"
 
-            if current_price is not None and previous_price is not None:
-                if current_price > previous_price:
-                    color = discord.Color.green()
-                    description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
-                elif current_price < previous_price:
-                    color = discord.Color.red()
-                    description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
-                else:
-                    color = discord.Color.orange()
-                    description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+            if current_price is not None:
+                
+                    color = discord.Color.purple()
+                    description += f"Current Price (15 min): ${current_price:.2f}"
+                
             else:
                 color = discord.Color.orange()
                 description += "No data available for current or previous price."
             
             
             
-            print(f"Previous Price: {previous_price}")
+            # print(f"Previous Price: {previous_price}")
             print(f"Current Price: {current_price}")
 
 
