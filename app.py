@@ -70,7 +70,7 @@ async def S(ctx, ticker):
 async def StockWatch(ctx):
  embed = discord.Embed(
     title = "Stock Watch",
-    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !stock AAPL for example",
+    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !stock AAPL for example also if you query for just one ticker and its green that means the current candle (15min) is greater or higher than the previous candle, if its red vice versa.",
     color = discord.Color.gold()
  )
 
@@ -232,7 +232,7 @@ async def Sam(ctx):
 
 
 @bot.command()
-async def help(ctx):
+async def command_help(ctx):
     embed = discord.Embed(title="Available Commands", description="Here are the available commands:", color=discord.Color.purple())
     embed.add_field(name="!hello", value="Greet the bot", inline=False)
     embed.add_field(name="!whatareyoudoing", value="Check what the bot is doing", inline=False)
@@ -241,7 +241,6 @@ async def help(ctx):
     embed.add_field(name="!weather ('city')", value="Check the weather of any city included in the free tier of this API", inline=False)
     embed.add_field(name="!joke ('category')", value="Pick a joke from a category (Programming, Misc, Dark, Pun, Spooky, Christmas)", inline=False)
     embed.add_field(name="!cat", value="Randomly generate a cat image", inline=False)
-    embed.add_field(name="!SPY", value="Query for the current price of SPY", inline=False)
     embed.add_field(name="!Jay", value="Learn about Jay, a remarkable individual who embodies the qualities of a true sigma and an alpha male", inline=False)
     embed.add_field(name="!Frank", value="Discover more about Frank, a legendary multi-title esports champion who has retired", inline=False)
     embed.add_field(name="!Vam", value="Explore the accomplishments of Vam, the best options trader and osu player of all time", inline=False)
