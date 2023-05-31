@@ -30,22 +30,15 @@ def create_embed(description):
 @bot.command()
 async def t(ctx, ticker):
     try:
-        stock = yf.Ticker(ticker)
-        data = stock.history(period="1d")
+        stock = yf.Ticker(ticker).history(period="1d")
 
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
+            daily_open = stock["Open"].iloc[0]
+            current_high = stock["High"].max()
+            previous_price = stock["Close"].iloc[-2]
+            # previous_price = None
 
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = None
-
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = None
+            current_price = stock["Close"].iloc[-1]
+            # current_price = None
 
             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
                           f"Current High of the Day: ${current_high:.2f}\n"
