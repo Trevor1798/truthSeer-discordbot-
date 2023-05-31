@@ -33,16 +33,16 @@ async def t(ctx, ticker):
         stock = yf.Ticker(ticker)
         data = stock.history(period="15m")
 
-        if len(data):
+        if len(data) > 0:
             daily_open = data["Open"].iloc[0]
             current_high = data["High"].max()
 
-            if len(data):
+            if len(data) >= 2:
                 previous_price = data["Close"].iloc[-2]
             else:
                 previous_price = None
 
-            if len(data):
+            if len(data) >= 1:
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = None
@@ -63,6 +63,12 @@ async def t(ctx, ticker):
             else:
                 color = discord.Color.orange()
                 description += "No data available for current or previous price."
+            
+            
+            
+            print(f"Previous Price: {previous_price}")
+            print(f"Current Price: {current_price}")
+
 
             embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
             await ctx.send(embed=embed)
