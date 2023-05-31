@@ -82,12 +82,16 @@ async def QQQ(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
@@ -118,12 +122,16 @@ async def TSLA(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
@@ -153,12 +161,16 @@ async def AMZN(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
@@ -188,12 +200,16 @@ async def BA(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
@@ -223,12 +239,16 @@ async def NVDA(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
@@ -258,12 +278,16 @@ async def GME(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
@@ -293,12 +317,18 @@ async def GOOGL(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for GOOGL")
     except Exception as e:
@@ -326,12 +356,18 @@ async def AAPL(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for AAPL")
     except Exception as e:
@@ -359,12 +395,18 @@ async def FB(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for FB")
     except Exception as e:
@@ -392,12 +434,18 @@ async def DIS(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for DIS")
     except Exception as e:
@@ -425,12 +473,18 @@ async def NFLX(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for NFLX")
     except Exception as e:
@@ -458,12 +512,18 @@ async def AMD(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for AMD")
     except Exception as e:
@@ -489,12 +549,18 @@ async def HD(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
-            await ctx.send(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
         else:
             await ctx.send("No data available for HD")
     except Exception as e:
@@ -528,13 +594,18 @@ async def StockWatch(ctx):
 @bot.command()
 async def WatchList(ctx):
     tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "FB", "DIS", "NFLX", "AMD", "HD"]
+    embed = discord.Embed(title = "WatchList", color=0x00FF00)
+
     for tick in tickers:
         data = yf.Ticker(tick).history(period="15m")
         if not data.empty:
+            
             current_price = data["Close"].iloc[-1]
-            await ctx.send(f"{tick}: ${current_price:.2f}")
+            embed.add_field(name=tick, value=f"${current_price:.2f}", inline=True)
         else:
-            await ctx.send(f"No data available for {tick}")
+            embed.add_field(name=tick, value="No data available", inline=True)
+    
+    await ctx.send(embed=embed)
 
 #Weather API function
 @bot.command()
