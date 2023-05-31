@@ -631,7 +631,7 @@ async def StockWatch(ctx):
 @bot.command()
 async def WatchList(ctx):
     tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
-    embed = discord.Embed(title = "WatchList", color=0x00FF00)
+    embed = discord.Embed(title = "WatchList - Current Prices", color=0x00FF00)
 
     for tick in tickers:
         data = yf.Ticker(tick).history(period="15m")
