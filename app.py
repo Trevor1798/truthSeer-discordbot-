@@ -160,11 +160,14 @@ async def ListWatch(ctx):
     # Iterate over the watchlists and add them to the embedded message
         # Create a string representation of the stocks in the watchlist
         stocks_str = "\n".join(watchlist_data) if watchlist_data else "No stocks in this watchlist."
-        
-        
         # Add the watchlist name and stocks to the embedded message
         embed.add_field(name=watchlist_name, value=stocks_str, inline=False)
-    
+    for watchlist_name, stocks in watchlists.items():
+        if watchlist_name not in r.keys():
+            # Create a string representation of the stocks in the watchlist
+            stocks_str = "\n".join(stocks) if stocks else "No stocks in this watchlist."    
+
+
     # Send the embedded message
     await ctx.send(embed=embed)
 
