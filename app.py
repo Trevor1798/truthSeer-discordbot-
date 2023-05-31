@@ -37,7 +37,7 @@ async def t(ctx, ticker):
             daily_open = data["Open"].iloc[0]
             current_high = data["High"].max()
 
-            if len(data) >= 2:
+            if data.shape[0] >= 2:
                 previous_price = data["Close"].iloc[-2]
             else:
                 previous_price = None
