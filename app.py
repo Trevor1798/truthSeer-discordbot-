@@ -566,6 +566,42 @@ async def HD(ctx):
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
         
+
+@bot.command()
+async def SBUX(ctx):
+    try:
+        spy = yf.Ticker("SBUX")
+        data = spy.history(period="15m")
+        
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+            
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = "N/A"
+            
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = "N/A"
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
+            embed = create_embed(description)
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("No data available for SBUX")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
  
 
 @bot.command()
@@ -589,11 +625,12 @@ async def StockWatch(ctx):
                     !NFLX
                     !AMD
                     !HD
+                    !SBUX
                     """)
 
 @bot.command()
 async def WatchList(ctx):
-    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD"]
+    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
     embed = discord.Embed(title = "WatchList", color=0x00FF00)
 
     for tick in tickers:
