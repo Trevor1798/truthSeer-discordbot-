@@ -68,8 +68,8 @@ async def t(ctx, ticker):
                 mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
 
                 plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
-                plt.xlabel("Date", color='white')
-                plt.ylabel("Price", color='white')
+                plt.xlabel("Date", color='orange')
+                plt.ylabel("Price", color='orange')
                 plt.xticks(color='white')
                 plt.yticks(color='white')
                 ax.xaxis.label.set_color('white')
