@@ -74,10 +74,10 @@ async def t(ctx, ticker):
                 plt.yticks(color='white')
                 ax.xaxis.label.set_color('white')
                 ax.yaxis.label.set_color('white')
-                ax.spines['bottom'].set_color('white')
-                ax.spines['top'].set_color('white')
-                ax.spines['left'].set_color('white')
-                ax.spines['right'].set_color('white')
+                ax.spines['bottom'].set_color('grey')
+                ax.spines['top'].set_color('grey')
+                ax.spines['left'].set_color('grey')
+                ax.spines['right'].set_color('grey')
 
                 # Plot the candles with color based on close and opening prices
                 # for i in range(len(data)):
@@ -102,11 +102,10 @@ async def t(ctx, ticker):
                 # Send the embed with the chart image
                 await ctx.send(file=file, embed=embed)
             else:
-                color = discord.Color.orange()
                 description += "No data available for current or previous price."
 
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
+            # embed = create_embed(description)
+            # await ctx.send(embed=embed)
         else:
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
