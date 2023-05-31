@@ -62,7 +62,7 @@ async def t(ctx, ticker):
 
                 # Create a dark-themed candlestick chart
                 mc = mpf.make_marketcolors(up='green', down='red')
-                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
+                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='grey')
 
                 fig, ax = plt.subplots(figsize=(12, 9))
                 mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
