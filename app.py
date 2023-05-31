@@ -30,7 +30,7 @@ def create_embed(description):
 @bot.command()
 async def t(ctx, ticker):
     try:
-        stock = yf.Ticker(ticker).history(period="1d")
+        stock = yf.Ticker(ticker).history(period="15m")
 
         daily_open = stock["Open"].iloc[0]
         current_high = stock["High"].max()
