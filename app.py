@@ -606,7 +606,7 @@ async def SBUX(ctx):
 async def StockWatch(ctx):
  embed = discord.Embed(
     title = "Stock Watch",
-    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart."
+    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart.",
     color = discord.Color.blue()
  )
 
