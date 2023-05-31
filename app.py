@@ -85,7 +85,7 @@ async def t(ctx, ticker):
                         color = 'green'  # Green for bullish candles
                     else:
                         color = 'red'  # Red for bearish candles
-                    mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
+                    mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s, upcolor = 'green', downcolor='red')
 
                 # Save the chart as an image
                 image_stream = BytesIO()
