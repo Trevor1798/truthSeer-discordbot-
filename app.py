@@ -67,8 +67,8 @@ async def t(ctx, ticker):
                 fig, ax = plt.subplots(figsize=(8, 5))
                 mpf.plot(data, type='candle', ax=ax, volume=False, style=s,)
 
-                print("MPFPLOT", mpf.plot.to_string())
-                print("MPFMAKEMARKETCOLORS", mpf.make_marketcolors.to_string())
+                print("MPFPLOT", mpf.plot)
+                print("MPFMAKEMARKETCOLORS", mpf.make_marketcolors)
 
                 plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
                 plt.xlabel("Date", color='white')
