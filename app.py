@@ -42,7 +42,7 @@ async def t(ctx, ticker):
     try:
         stock = yf.Ticker(ticker)
         data = stock.history(period="15m")
-        print(f"data: {data}")
+        print(data.to_string())
 
         if len(data) > 8:
             daily_open = data["Open"].iloc[0]
