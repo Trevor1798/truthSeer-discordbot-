@@ -58,7 +58,6 @@ async def t(ctx, ticker):
                           f"Current Low of the Day: ${current_low:.2f}\n"
 
             if current_price is not None:
-                color = discord.Color.purple()
                 description += f"Current Price (15 min): ${current_price:.2f}"
                 
                 # Create a dark-themed candlestick chart
@@ -112,6 +111,7 @@ async def t(ctx, ticker):
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
+
 
 
 
