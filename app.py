@@ -20,598 +20,62 @@ BASE_URL = os.environ.get("WEATHER_API_URL")
 def create_embed(description):
     embed = discord.Embed(description = description, color = discord.Color.orange())
     return embed
-#SPY fetcher
-
-@bot.command()
-async def SPY(ctx):
-    try:
-        spy = yf.Ticker("SPY")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for SPY")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def QQQ(ctx):
-    try:
-        spy = yf.Ticker("QQQ")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for QQQ")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-
-@bot.command()
-async def TSLA(ctx):
-    try:
-        spy = yf.Ticker("TSLA")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for TSLA")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def AMZN(ctx):
-    try:
-        spy = yf.Ticker("AMZN")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for AMZN")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def BA(ctx):
-    try:
-        spy = yf.Ticker("BA")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for BA")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def NVDA(ctx):
-    try:
-        spy = yf.Ticker("NVDA")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for NVDA")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def GME(ctx):
-    try:
-        spy = yf.Ticker("GME")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for GME")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def GOOGL(ctx):
-    try:
-        spy = yf.Ticker("GOOGL")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for GOOGL")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def AAPL(ctx):
-    try:
-        spy = yf.Ticker("AAPL")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for AAPL")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def META(ctx):
-    try:
-        spy = yf.Ticker("META")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for META")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def DIS(ctx):
-    try:
-        spy = yf.Ticker("DIS")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for DIS")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def NFLX(ctx):
-    try:
-        spy = yf.Ticker("NFLX")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for NFLX")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-
-
-@bot.command()
-async def AMD(ctx):
-    try:
-        spy = yf.Ticker("AMD")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for AMD")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-
-
-@bot.command()
-async def HD(ctx):
-    try:
-        spy = yf.Ticker("HD")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for HD")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
-        
-
-@bot.command()
-async def SBUX(ctx):
-    try:
-        spy = yf.Ticker("SBUX")
-        data = spy.history(period="15m")
-        
-        if len(data) > 0:
-            daily_open = data["Open"].iloc[0]
-            current_high = data["High"].max()
-            
-            if len(data) >= 2:
-                previous_price = data["Close"].iloc[-2]
-            else:
-                previous_price = "N/A"
-            
-            if len(data) >= 1:
-                current_price = data["Close"].iloc[-1]
-            else:
-                current_price = "N/A"
-
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
-
-            if current_price != "N/A":
-                description += f"Current price (15 min): ${current_price:.2f}\n"
-
-            if previous_price != "N/A":
-                description += f"Previous price (15 min): ${previous_price:.2f}"
-
-            embed = create_embed(description)
-            await ctx.send(embed=embed)
-        else:
-            await ctx.send("No data available for SBUX")
-    except Exception as e:
-        await ctx.send(f"An error occurred: {str(e)}")
  
+@bot.command()
+async def S(ctx, ticker):
+    try:
+        stock = yf.Ticker(ticker)
+        data = stock.history(period="15m")
+
+        if len(data) > 0:
+            daily_open = data["Open"].iloc[0]
+            current_high = data["High"].max()
+
+            if len(data) >= 2:
+                previous_price = data["Close"].iloc[-2]
+            else:
+                previous_price = None
+
+            if len(data) >= 1:
+                current_price = data["Close"].iloc[-1]
+            else:
+                current_price = None
+
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price is not None and previous_price is not None:
+                if current_price > previous_price:
+                    color = discord.Color.green()
+                    description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+                elif current_price < previous_price:
+                    color = discord.Color.red()
+                    description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+                else:
+                    color = discord.Color.orange()
+                    description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+            else:
+                color = discord.Color.orange()
+                description += "No data available for current or previous price."
+
+            embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send(f"No data available for {ticker.upper()}")
+    except Exception as e:
+        await ctx.send(f"An error occurred: {str(e)}")
+
 
 @bot.command()
 async def StockWatch(ctx):
  embed = discord.Embed(
     title = "Stock Watch",
-    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart.",
-    color = discord.Color.blue()
+    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !stock AAPL for example",
+    color = discord.Color.gold()
  )
 
- embed.add_field(name="Symbols", value = "!WatchList\n!SPY\n!QQQ\n!TSLA\n!AMZN\n!BA\n!NVDA\n!GME\n!GOOGLE\n!AAPL\n!FB\n!DIS\n!NFLX\n!AMD\n!HD\n!SBUX")
- embed.set_footer(text ="Please type the symbols exactly as shown to query for information." )
+ embed.add_field(name="Symbols", value = "!WatchList\n!S SPY\n!S QQQ\n!S TSLA\n!S AMZN\n!S BA\n!S NVDA\n!S GME\n!S GOOGLE\n!S AAPL\n!S FB\n!S DIS\n!S NFLX\n!S AMD\n!S HD\n!S SBUX")
+ embed.set_footer(text ="Please type the symbols exactly as shown to query for information. These are just examples try any ticker :)" )
  await ctx.send(embed = embed)
 
 @bot.command()
@@ -766,26 +230,27 @@ async def Sam(ctx):
 
 #turbulence
 
-@bot.command()
-async def command_help(ctx):
-    help_message = "Here are the available commands:\n"
-    help_message += "!hello - Greet the bot\n"
-    help_message += "!whatareyoudoing - Check what the bot is doing\n"
-    help_message += "!whatsup - Check what the bot is up to\n"
-    help_message += "!StockWatch - Look at a bunch of different options for querying stocks\n"
-    help_message += "!weather ('city') - check the weather of any city included in the free tier of this api\n"
-    help_message += "!joke ('category') - pick a joke from a category there's Programming, Misc, Dark, Pun, Spooky, Christmas\n"
-    help_message += "!cat - randomly generate a cat image\n"
-    help_message += "!SPY - query for the current price of SPY"
-    help_message += "!Jay - Learn about Jay, a remarkable individual who embodies the qualities of a true sigma and an alpha male\n"
-    help_message += "!Frank - Discover more about Frank, a legendary multi-title esports champion who has retired\n"
-    help_message += "!Vam - Explore the accomplishments of Vam, the best options trader and osu player of all time\n"
-    help_message += "!Chris - Learn about Chris, a hilarious storyteller, anime and OG games expert, and future goated programmer\n"
-    help_message += "!Trev - Discover the indescribable essence of Trev, a person who defies conventional descriptions\n"
-    help_message += "!Sam - Learn about Sam, an exceptional individual who is simply the best\n" 
-    help_message += "!help - Display this help message"
 
-    await ctx.send(help_message)
+@bot.command()
+async def help(ctx):
+    embed = discord.Embed(title="Available Commands", description="Here are the available commands:", color=discord.Color.purple())
+    embed.add_field(name="!hello", value="Greet the bot", inline=False)
+    embed.add_field(name="!whatareyoudoing", value="Check what the bot is doing", inline=False)
+    embed.add_field(name="!whatsup", value="Check what the bot is up to", inline=False)
+    embed.add_field(name="!StockWatch", value="Look at a bunch of different options for querying stocks", inline=False)
+    embed.add_field(name="!weather ('city')", value="Check the weather of any city included in the free tier of this API", inline=False)
+    embed.add_field(name="!joke ('category')", value="Pick a joke from a category (Programming, Misc, Dark, Pun, Spooky, Christmas)", inline=False)
+    embed.add_field(name="!cat", value="Randomly generate a cat image", inline=False)
+    embed.add_field(name="!SPY", value="Query for the current price of SPY", inline=False)
+    embed.add_field(name="!Jay", value="Learn about Jay, a remarkable individual who embodies the qualities of a true sigma and an alpha male", inline=False)
+    embed.add_field(name="!Frank", value="Discover more about Frank, a legendary multi-title esports champion who has retired", inline=False)
+    embed.add_field(name="!Vam", value="Explore the accomplishments of Vam, the best options trader and osu player of all time", inline=False)
+    embed.add_field(name="!Chris", value="Learn about Chris, a hilarious storyteller, anime and OG games expert, and future goated programmer", inline=False)
+    embed.add_field(name="!Trev", value="Discover the indescribable essence of Trev, a person who defies conventional descriptions", inline=False)
+    embed.add_field(name="!Sam", value="Learn about Sam, an exceptional individual who is simply the best", inline=False)
+    embed.add_field(name="!help", value="Display this help message", inline=False)
+    await ctx.send(embed=embed)
+
 
 @bot.event
 async def on_message(message):
@@ -800,3 +265,639 @@ async def on_message(message):
     await bot.process_commands(message)
 
 bot.run(os.environ["BOT_TOKEN"])
+
+
+
+#This code was easy to write but violated the DRY principle, recently I've added a way to query for any stock and not just a limited amount 
+# @bot.command()
+# async def SPY(ctx):
+#     try:
+#         spy = yf.Ticker("SPY")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for SPY")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def QQQ(ctx):
+#     try:
+#         spy = yf.Ticker("QQQ")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for QQQ")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+
+# @bot.command()
+# async def TSLA(ctx):
+#     try:
+#         spy = yf.Ticker("TSLA")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for TSLA")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def AMZN(ctx):
+#     try:
+#         spy = yf.Ticker("AMZN")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for AMZN")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def BA(ctx):
+#     try:
+#         spy = yf.Ticker("BA")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for BA")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def NVDA(ctx):
+#     try:
+#         spy = yf.Ticker("NVDA")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for NVDA")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def GME(ctx):
+#     try:
+#         spy = yf.Ticker("GME")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for GME")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def GOOGL(ctx):
+#     try:
+#         spy = yf.Ticker("GOOGL")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+            
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = "N/A"
+            
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = "N/A"
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price != "N/A":
+#                 description += f"Current price (15 min): ${current_price:.2f}\n"
+
+#             if previous_price != "N/A":
+#                 description += f"Previous price (15 min): ${previous_price:.2f}"
+
+#             embed = create_embed(description)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for GOOGL")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def AAPL(ctx):
+#     try:
+#         spy = yf.Ticker("AAPL")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="AAPL Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for AAPL")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def META(ctx):
+#     try:
+#         spy = yf.Ticker("META")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="META Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for META")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def DIS(ctx):
+#     try:
+#         spy = yf.Ticker("DIS")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="DIS Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for DIS")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+
+# @bot.command()
+# async def NFLX(ctx):
+#     try:
+#         spy = yf.Ticker("NFLX")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="NFLX Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for NFLX")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+
+# @bot.command()
+# async def AMD(ctx):
+#     try:
+#         spy = yf.Ticker("AMD")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="AMD Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for AMD")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+
+# @bot.command()
+# async def HD(ctx):
+#     try:
+#         spy = yf.Ticker("HD")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="HD Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for HD")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
+
+# @bot.command()
+# async def SBUX(ctx):
+#     try:
+#         spy = yf.Ticker("SBUX")
+#         data = spy.history(period="15m")
+        
+#         if len(data) > 0:
+#             daily_open = data["Open"].iloc[0]
+#             current_high = data["High"].max()
+
+#             if len(data) >= 2:
+#                 previous_price = data["Close"].iloc[-2]
+#             else:
+#                 previous_price = None
+
+#             if len(data) >= 1:
+#                 current_price = data["Close"].iloc[-1]
+#             else:
+#                 current_price = None
+
+#             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+#                           f"Current High of the Day: ${current_high:.2f}\n"
+
+#             if current_price is not None and previous_price is not None:
+#                 if current_price > previous_price:
+#                     color = discord.Color.green()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
+#                 elif current_price < previous_price:
+#                     color = discord.Color.red()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (Down from previous)"
+#                 else:
+#                     color = discord.Color.orange()
+#                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
+#             else:
+#                 color = discord.Color.orange()
+#                 description += "No data available for current or previous price."
+
+#             embed = discord.Embed(title="SBUX Stock Information", description=description, color=color)
+#             await ctx.send(embed=embed)
+#         else:
+#             await ctx.send("No data available for SBUX")
+#     except Exception as e:
+#         await ctx.send(f"An error occurred: {str(e)}")
