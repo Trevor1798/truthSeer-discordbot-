@@ -22,7 +22,7 @@ def create_embed(description):
     return embed
  
 @bot.command()
-async def S(ctx, ticker):
+async def t(ctx, ticker):
     try:
         stock = yf.Ticker(ticker)
         data = stock.history(period="15m")
@@ -70,11 +70,11 @@ async def S(ctx, ticker):
 async def StockWatch(ctx):
  embed = discord.Embed(
     title = "Stock Watch",
-    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !S AAPL for example also if you query for just one ticker and its green that means the current candle (15min) is greater or higher than the previous candle, if its red vice versa.",
+    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !t AAPL for example also if you query for just one ticker and its green that means the current candle (15min) is greater or higher than the previous candle, if its red vice versa.",
     color = discord.Color.gold()
  )
 
- embed.add_field(name="Symbols", value = "!WatchList\n!S SPY\n!S QQQ\n!S TSLA\n!S AMZN\n!S BA\n!S NVDA\n!S GME\n!S GOOGLE\n!S AAPL\n!S FB\n!S DIS\n!S NFLX\n!S AMD\n!S HD\n!S SBUX")
+ embed.add_field(name="Symbols", value = "!WatchList\n!t SPY\n!t QQQ\n!t TSLA\n!t AMZN\n!t BA\n!t NVDA\n!t GME\n!t GOOGLE\n!t AAPL\n!t FB\n!t DIS\n!t NFLX\n!t AMD\n!t HD\n!t SBUX")
  embed.set_footer(text ="Please type the symbols exactly as shown to query for information. These are just examples try any ticker :)" )
  await ctx.send(embed = embed)
 
