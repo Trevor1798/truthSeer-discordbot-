@@ -43,17 +43,20 @@ import mplfinance as mpf
 import matplotlib.pyplot as plt
 import mplfinance as mpf
 
+import matplotlib.pyplot as plt
+import mplfinance as mpf
+
 @bot.command()
 async def t(ctx, ticker):
     try:
         stock = yf.Ticker(ticker)
         data = stock.history(period="15m")
 
-        if len(data) > 0:
+        if len(data) > 8:
             daily_open = data["Open"].iloc[0]
             current_high = data["High"].max()
 
-            if len(data) >= 1:
+            if len(data) >= 9:
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = None
@@ -65,18 +68,16 @@ async def t(ctx, ticker):
                 color = discord.Color.purple()
                 description += f"Current Price (15 min): ${current_price:.2f}"
 
+                # Create subsets of data for each candlestick
+                data_1 = data.iloc[0:4]  # OHLC for first candlestick
+                data_2 = data.iloc[4:8]  # OHLC for second candlestick
+
                 # Create a new figure and axis for the chart
                 fig, ax = plt.subplots(figsize=(8, 5))
 
-                # Plot the candlestick chart
-                mpf.plot(data, type='candle', ax=ax, volume=False)
-
-                # Customize the colors of the candlesticks based on open and close values
-                for i in range(len(data)):
-                    if data['Close'].iloc[i] >= data['Open'].iloc[i]:
-                        ax.lines[i].set_color('g')  # Set color to green for bullish candles
-                    else:
-                        ax.lines[i].set_color('r')  # Set color to red for bearish candles
+                # Plot each candlestick subset separately
+                mpf.plot(data_1, type='candle', ax=ax, volume=False, colorup='g', colordown='r')
+                mpf.plot(data_2, type='candle', ax=ax, volume=False, colorup='g', colordown='r')
 
                 plt.title(f"{ticker.upper()} Candlestick Chart")
                 plt.xlabel("Date")
@@ -103,9 +104,10 @@ async def t(ctx, ticker):
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
-            await ctx.send(f"No data available for {ticker.upper()}")
+            await ctx.send(f"Not enough data available for {ticker.upper()}")
     except Exception as e:
-          await ctx.send(f"An error occurred: {str(e)}")
+        await ctx.send(f"An error occurred: {str(e)}")
+
 
 
 
