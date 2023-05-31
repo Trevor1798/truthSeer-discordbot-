@@ -108,7 +108,7 @@ async def AddStock(ctx, ticker):
 async def WatchList(ctx):
     watchlist = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
     if len(watchlist) > 0:
-        embed = discord.Embed(title="Watchlist", color=discord.Color.green())
+        embed = discord.Embed(title="Watchlist - Current Price", color=discord.Color.green())
         for ticker in watchlist:
             data = yf.Ticker(ticker).history(period="15m")
             if not data.empty:
