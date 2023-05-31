@@ -41,7 +41,7 @@ def create_embed(description):
 async def t(ctx, ticker):
     try:
         stock = yf.Ticker(ticker)
-        data = stock.history(period="15m")
+        data = stock.history(period="1d")
 
         if len(data) > 0:
             daily_open = data["Open"].iloc[0]
@@ -70,22 +70,22 @@ async def t(ctx, ticker):
                 plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
                 plt.xlabel("Date", color='orange')
                 plt.ylabel("Price", color='orange')
-                plt.xticks(color='white')
-                plt.yticks(color='white')
-                ax.xaxis.label.set_color('white')
-                ax.yaxis.label.set_color('white')
+                plt.xticks(color='grey')
+                plt.yticks(color='grey')
+                ax.xaxis.label.set_color('orange')
+                ax.yaxis.label.set_color('orange')
                 ax.spines['bottom'].set_color('grey')
                 ax.spines['top'].set_color('grey')
                 ax.spines['left'].set_color('grey')
                 ax.spines['right'].set_color('grey')
 
                 # Plot the candles with color based on close and opening prices
-                # for i in range(len(data)):
-                #     if data['Close'].iloc[i] >= data['Open'].iloc[i]:
-                #         color = mc['edge']['up']  # Green for bullish candles
-                #     else:
-                #         color = mc['edge']['down']  # Red for bearish candles
-                #     mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
+                for i in range(len(data)):
+                    if data['Close'].iloc[i] >= data['Open'].iloc[i]:
+                        color = mc['edge']['up']  # Green for bullish candles
+                    else:
+                        color = mc['edge']['down']  # Red for bearish candles
+                    mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
 
                 # Save the chart as an image
                 image_stream = BytesIO()
