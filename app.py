@@ -33,16 +33,16 @@ async def t(ctx, ticker):
         stock = yf.Ticker(ticker)
         data = stock.history(period="15m")
 
-        if len(data) > 0:
+        if len(data):
             daily_open = data["Open"].iloc[0]
             current_high = data["High"].max()
 
-            if len(data) >= 2:
+            if len(data):
                 previous_price = data["Close"].iloc[-2]
             else:
                 previous_price = None
 
-            if len(data) >= 1:
+            if len(data):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = None
