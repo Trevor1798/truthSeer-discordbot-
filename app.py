@@ -31,7 +31,7 @@ def create_embed(description):
 async def t(ctx, ticker):
     try:
         stock = yf.Ticker(ticker)
-        data = stock.history(period="15m")
+        data = stock.history(period="1d")
 
         if len(data) > 0:
             daily_open = data["Open"].iloc[0]
