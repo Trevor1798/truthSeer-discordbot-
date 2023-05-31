@@ -4,7 +4,11 @@ import os
 import asyncio
 import requests
 import yfinance as yf
+import redis
 
+
+redis_url = os.environ.get("REDISCLOUD_URL")
+r = redis.Redis.from_url(redis_url)
 
 
 target_channel_id = 1111186051520790550
@@ -103,6 +107,7 @@ async def AddStock(ctx, watchlist_name, ticker):
             await ctx.send(f"Stock {ticker} added to watchlist {watchlist_name}.")
         else:
             await ctx.send(f"Stock {ticker} is already in watchlist {watchlist_name}.")
+        r.set(watchlist_name, ','.join(watchlists[watchlist_name]))
     else:
         await ctx.send(f"No data available for {ticker.upper()}")
 
@@ -114,7 +119,14 @@ async def WatchList(ctx, watchlist_name):
         await ctx.send(f"Watchlist '{watchlist_name}' does not exist.")
         return
 
-    watchlist = watchlists[watchlist_name]
+    if r.exists(watchlist_name):
+        # Retrieve the watchlist data from Redis
+        watchlist_data = r.get(watchlist_name).decode().split(',')
+        watchlist = watchlist_data if watchlist_data else []
+    else:
+        # Retrieve the watchlist from the in-memory watchlists dictionary
+        watchlist = watchlists[watchlist_name]
+
 
     if len(watchlist) > 0:
         embed = discord.Embed(title=f"Watchlist - {watchlist_name} - Current Price", color=0xB8860B)
@@ -125,6 +137,8 @@ async def WatchList(ctx, watchlist_name):
                 embed.add_field(name=ticker, value=f"${current_price:.2f}", inline=True)
             else:
                 embed.add_field(name=ticker, value="No data available", inline=True)
+
+        r.set(watchlist_name, ','.join(watchlist))
         await ctx.send(embed=embed)
     else:
         await ctx.send(f"The watchlist '{watchlist_name}' is empty.")
@@ -137,10 +151,16 @@ async def ListWatch(ctx):
     # Create an embedded message with a gold color
     embed = discord.Embed(title="Watchlists", color=discord.Color.gold())
     
+
+    keys = r.keys()  
+
+    for key in keys:
+        watchlist_name = key.decode()  # Convert the key to string
+        watchlist_data = r.get(key).decode().split(',')  # Get the watchlist data from Redis and split it into a list
     # Iterate over the watchlists and add them to the embedded message
-    for watchlist_name, stocks in watchlists.items():
         # Create a string representation of the stocks in the watchlist
-        stocks_str = "\n".join(stocks) if stocks else "No stocks in this watchlist."
+        stocks_str = "\n".join(watchlist_data) if watchlist_data else "No stocks in this watchlist."
+        
         
         # Add the watchlist name and stocks to the embedded message
         embed.add_field(name=watchlist_name, value=stocks_str, inline=False)
