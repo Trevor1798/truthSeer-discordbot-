@@ -69,9 +69,14 @@ async def t(ctx, ticker):
 
                 # Plot each candlestick subset separately
               # Plot each candlestick subset separately
-                mpf.plot(data_1, type='candle', ax=ax, volume=False, colorup='g', colordown='r')
-                mpf.plot(data_2, type='candle', ax=ax, volume=False, colorup='g', colordown='r')
-                # Add more plots for additional candlesticks if needed
+            for idx, subset in enumerate([data_1, data_2]):
+                for i in range(len(subset)):
+                        if subset['Close'].iloc[i] >= subset['Open'].iloc[i]:
+                            ax.lines[idx * len(subset) + i].set_color('g')  # Set color to green for bullish candles
+                        else:
+                            ax.lines[idx * len(subset) + i].set_color('r')  # Set color to red for bearish candles
+
+                                # Add more plots for additional candlesticks if needed
 
                 plt.title(f"{ticker.upper()} Candlestick Chart")
                 plt.xlabel("Date")
