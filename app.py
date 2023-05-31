@@ -64,12 +64,12 @@ async def t(ctx, ticker):
                 mc = mpf.make_marketcolors(up='green', down='red')
                 s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
 
-                fig, ax = plt.subplots(figsize=(8, 5))
+                fig, ax = plt.subplots(figsize=(12, 9))
                 mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
 
                 plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
                 plt.xlabel("Date", color='orange')
-                plt.ylabel("Price", color='orange')
+                plt.ylabel("Time", color='orange')
                 plt.xticks(color='grey')
                 plt.yticks(color='grey')
                 ax.xaxis.label.set_color('orange')
