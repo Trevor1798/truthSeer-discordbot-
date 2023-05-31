@@ -18,7 +18,8 @@ WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
 
 #Global variable
-watchlist = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
+watchlists = {}
+watchlists["Pineapple"] = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
 
 
 def create_embed(description):
@@ -84,8 +85,8 @@ async def StockWatch(ctx):
 
 # Command to add stocks to the watchlist
 @bot.command()
-async def AddStock(ctx, ticker):
-    global watchlist
+async def AddStock(ctx, watchlist_name, ticker):
+    global watchlists
     # Check if the ticker symbol is valid
     stock = yf.Ticker(ticker)
     try:
@@ -95,24 +96,31 @@ async def AddStock(ctx, ticker):
         return
     
     if len(data) > 0:
-        # Add the stock to the watchlist
-        watchlist = []  # Replace this with your preferred method of storing the watchlist
-        if ticker not in watchlist:
-            watchlist.append(ticker)
-            await ctx.send(f"Stock {ticker} added to the watchlist.")
+        # Check if the watchlist already exists, create a new one if it doesn't
+        if watchlist_name not in watchlists:
+            watchlists[watchlist_name] = []
+        
+        # Add the stock to the chosen watchlist
+        if ticker not in watchlists[watchlist_name]:
+            watchlists[watchlist_name].append(ticker)
+            await ctx.send(f"Stock {ticker} added to watchlist {watchlist_name}.")
         else:
-            await ctx.send(f"Stock {ticker} is already in the watchlist.")
+            await ctx.send(f"Stock {ticker} is already in watchlist {watchlist_name}.")
     else:
         await ctx.send(f"No data available for {ticker.upper()}")
 
-
-
-
 @bot.command()
-async def WatchList(ctx):
-    global watchlist
+async def WatchList(ctx, watchlist_name):
+    global watchlists
+
+    if watchlist_name not in watchlists:
+        await ctx.send(f"Watchlist '{watchlist_name}' does not exist.")
+        return
+
+    watchlist = watchlists[watchlist_name]
+
     if len(watchlist) > 0:
-        embed = discord.Embed(title="Watchlist - Current Price", color=discord.Color.green())
+        embed = discord.Embed(title=f"Watchlist - {watchlist_name} - Current Price", color=random.randint(0, 0xFFFFFF))
         for ticker in watchlist:
             data = yf.Ticker(ticker).history(period="15m")
             if not data.empty:
@@ -122,7 +130,27 @@ async def WatchList(ctx):
                 embed.add_field(name=ticker, value="No data available", inline=True)
         await ctx.send(embed=embed)
     else:
-        await ctx.send("The watchlist is empty.")
+        await ctx.send(f"The watchlist '{watchlist_name}' is empty.")
+
+
+@bot.command()
+async def ListWatch(ctx):
+    global watchlists
+    
+    # Create an embedded message with a gold color
+    embed = discord.Embed(title="Watchlists", color=discord.Color.gold())
+    
+    # Iterate over the watchlists and add them to the embedded message
+    for watchlist_name, stocks in watchlists.items():
+        # Create a string representation of the stocks in the watchlist
+        stocks_str = "\n".join(stocks) if stocks else "No stocks in this watchlist."
+        
+        # Add the watchlist name and stocks to the embedded message
+        embed.add_field(name=watchlist_name, value=stocks_str, inline=False)
+    
+    # Send the embedded message
+    await ctx.send(embed=embed)
+
 
 #Weather API function
 @bot.command()
@@ -283,8 +311,9 @@ async def command_help(ctx):
     embed.add_field(name="!hello", value="Greet the bot", inline=False)
     embed.add_field(name="!whatsup", value="Check what the bot is up to", inline=False)
     embed.add_field(name="!StockWatch", value="Look at a bunch of different options for querying stocks", inline=False)
-    embed.add_field(name="!WatchList", value = "Look at Pineapple's current Watch List of Stocks!")
-    embed.add_field(name ="!AddStock (ticker)", value = "Add a Stock to the Watch List!")
+    embed.add_field(name="!WatchList (watchlist Name)", value = "Look at Pineapple's current Watch List of Stocks!", inline = False)
+    embed.add_field(name="!AddStock (WatchList Name) (ticker)", value = "Add a Stock to the your own Watch List or one of ours!", inline = False)
+    embed.add_field(name="!ListWatch", value = "Look at all the different Watch Lists we have made!", inline = False)
     embed.add_field(name="!weather ('city')", value="Check the weather of any city included in the free tier of this API", inline=False)
     embed.add_field(name="!joke ('category')", value="Pick a joke from a category (Programming, Misc, Dark, Pun, Spooky, Christmas)", inline=False)
     embed.add_field(name="!cat", value="Randomly generate a cat image", inline=False)
