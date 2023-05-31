@@ -4,7 +4,7 @@ import os
 import asyncio
 import requests
 import yfinance as yf
-import random
+
 
 
 target_channel_id = 1111186051520790550
@@ -121,7 +121,7 @@ async def WatchList(ctx, watchlist_name):
     watchlist = watchlists[watchlist_name]
 
     if len(watchlist) > 0:
-        embed = discord.Embed(title=f"Watchlist - {watchlist_name} - Current Price", color=random.randint(0, 0xFFFFFF))
+        embed = discord.Embed(title=f"Watchlist - {watchlist_name} - Current Price", color=0xB8860B)
         for ticker in watchlist:
             data = yf.Ticker(ticker).history(period="15m")
             if not data.empty:
