@@ -43,13 +43,16 @@ async def SPY(ctx):
                 current_price = data["Close"].iloc[-1]
             else:
                 current_price = "N/A"
-            
 
-            description =(f"Daily Opening Price: ${daily_open:.2f}\n"
-                           f"Current High of the Day: ${current_high:.2f}\n"
-                           f"Current price (15 min): ${current_price:.2f}\n"
-                           f"Previous price (15 min): ${previous_price:.2f}"  
-                           )
+            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+                          f"Current High of the Day: ${current_high:.2f}\n"
+
+            if current_price != "N/A":
+                description += f"Current price (15 min): ${current_price:.2f}\n"
+
+            if previous_price != "N/A":
+                description += f"Previous price (15 min): ${previous_price:.2f}"
+
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
