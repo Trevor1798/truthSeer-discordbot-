@@ -69,8 +69,8 @@ async def t(ctx, ticker):
 
                 # Plot each candlestick subset separately
               # Plot each candlestick subset separately
-                mpf.plot(data_1, type='candle', ax=ax, volume=False, upcolor='g', downcolor='r')
-                mpf.plot(data_2, type='candle', ax=ax, volume=False, upcolor='g', downcolor='r')
+                mpf.plot(data_1, type='candle', ax=ax, volume=False, colorup='g', colordown='r')
+                mpf.plot(data_2, type='candle', ax=ax, volume=False, colorup='g', colordown='r')
                 # Add more plots for additional candlesticks if needed
 
                 plt.title(f"{ticker.upper()} Candlestick Chart")
