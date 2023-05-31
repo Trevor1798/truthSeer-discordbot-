@@ -37,9 +37,6 @@ def create_embed(description):
     return embed
  
 
-import matplotlib.pyplot as plt
-import mplfinance as mpf
-
 @bot.command()
 async def t(ctx, ticker):
     try:
@@ -49,6 +46,7 @@ async def t(ctx, ticker):
         if len(data) > 0:
             daily_open = data["Open"].iloc[0]
             current_high = data["High"].max()
+            current_low = data["Low"].min()
 
             if len(data) >= 1:
                 current_price = data["Close"].iloc[-1]
@@ -56,55 +54,49 @@ async def t(ctx, ticker):
                 current_price = None
 
             description = f"Daily Opening Price: ${daily_open:.2f}\n" \
-                          f"Current High of the Day: ${current_high:.2f}\n"
+                          f"Current High of the Day: ${current_high:.2f}\n" \
+                          f"Current Low of the Day: ${current_low:.2f}\n"
 
             if current_price is not None:
                 color = discord.Color.purple()
                 description += f"Current Price (15 min): ${current_price:.2f}"
+                
+                # Create a dark-themed candlestick chart
+                mc = mpf.make_marketcolors(up='green', down='red')
+                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
 
-                # Create subsets of data for each candlestick
-                num_candlesticks = 2  # Number of candlesticks to plot
-                subset_length = len(data) // num_candlesticks
+                fig, ax = plt.subplots(figsize=(8, 5))
+                mpf.plot(data, type='candle', ax=ax, volume=True, style=s)
 
-                if subset_length > 0:
-                    subsets = [data.iloc[i * subset_length : (i + 1) * subset_length] for i in range(num_candlesticks)]
-                    
-                    # Create a new figure and axis for the chart
-                    fig, ax = plt.subplots(figsize=(8, 5))
+                plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
+                plt.xlabel("Date", color='white')
+                plt.ylabel("Price", color='white')
+                plt.xticks(color='white')
+                plt.yticks(color='white')
+                ax.xaxis.label.set_color('white')
+                ax.yaxis.label.set_color('white')
+                ax.spines['bottom'].set_color('white')
+                ax.spines['top'].set_color('white')
+                ax.spines['left'].set_color('white')
+                ax.spines['right'].set_color('white')
 
-                    # Plot each candlestick subset separately
-                    for subset in subsets:
-                        mpf.plot(subset, type='candle', ax=ax, volume=False)
-
-                    # Customize the colors of the candlesticks based on open and close values
-                    for idx, subset in enumerate(subsets):
-                        for i in range(len(subset)):
-                            if subset['Close'].iloc[i] >= subset['Open'].iloc[i]:
-                                ax.lines[idx * len(subset) + i].set_color('g')  # Set color to green for bullish candles
-                            else:
-                                ax.lines[idx * len(subset) + i].set_color('r')  # Set color to red for bearish candles
-
-                    plt.title(f"{ticker.upper()} Candlestick Chart")
-                    plt.xlabel("Date")
-                    plt.ylabel("Price")
-
-                    # Save the chart as an image
-                    image_stream = BytesIO()
-                    plt.savefig(image_stream, format='png')
-                    image_stream.seek(0)
-
-                    # Create a file attachment from the image
-                    file = discord.File(image_stream, filename="chart.png")
-
-                    # Create the embed with the chart image
-                    embed = create_embed(description)
-                    embed.set_image(url="attachment://chart.png")
-
-                    # Send the embed with the chart image
-                    await ctx.send(file=file, embed=embed)
-                else:
-                    color = discord.Color.orange()
-                    description += "Insufficient data available for plotting multiple candlesticks."
+                # Save the chart as an image
+                image_stream = BytesIO()
+                plt.savefig(image_stream, format='png', facecolor='black')
+                image_stream.seek(0)
+                
+                # Create a file attachment from the image
+                file = discord.File(image_stream, filename="chart.png")
+                
+                # Create the embed with the chart image
+                embed = create_embed(description)
+                embed.set_image(url="attachment://chart.png")
+                
+                # Send the embed with the chart image
+                await ctx.send(file=file, embed=embed)
+            else:
+                color = discord.Color.orange()
+                description += "No data available for current or previous price."
 
             embed = create_embed(description)
             await ctx.send(embed=embed)
