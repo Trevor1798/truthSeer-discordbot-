@@ -17,6 +17,10 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
 
+#Global variable
+watchlist = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
+
+
 def create_embed(description):
     embed = discord.Embed(description = description, color = discord.Color.orange())
     return embed
@@ -65,23 +69,23 @@ async def t(ctx, ticker):
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
 
-
 @bot.command()
 async def StockWatch(ctx):
- embed = discord.Embed(
-    title = "Stock Watch",
-    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !t AAPL for example also if you query for just one ticker and its green that means the current candle (15min) is greater or higher than the previous candle, if its red vice versa. You can also add your own stocks to the current WatchList just type !AddStock AAPL, AAPL is already in there but if theres a ticker you would like to add that isn't in there this command will handle that!",
-    color = discord.Color.gold()
- )
+    embed = discord.Embed(
+        title = "Stock Watch",
+        description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart. Try querying for any stock on the stock market and it should return information! To look for a stock type !t AAPL for example also if you query for just one ticker and its green that means the current candle (15min) is greater or higher than the previous candle, if its red vice versa. You can also add your own stocks to the current WatchList just type !AddStock AAPL, AAPL is already in there but if theres a ticker you would like to add that isn't in there this command will handle that!",
+        color = discord.Color.gold()
+    )
 
- embed.add_field(name="Symbols", value = "!WatchList\n!t SPY\n!t QQQ\n!t TSLA\n!t AMZN\n!t BA\n!t NVDA\n!t GME\n!t GOOGLE\n!t AAPL\n!t FB\n!t DIS\n!t NFLX\n!t AMD\n!t HD\n!t SBUX")
- embed.set_footer(text ="Please type the symbols exactly as shown to query for information. These are just examples try any ticker :)" )
- await ctx.send(embed = embed)
+    embed.add_field(name="Symbols", value = "!WatchList\n!t SPY\n!t QQQ\n!t TSLA\n!t AMZN\n!t BA\n!t NVDA\n!t GME\n!t GOOGLE\n!t AAPL\n!t FB\n!t DIS\n!t NFLX\n!t AMD\n!t HD\n!t SBUX")
+    embed.set_footer(text ="Please type the symbols exactly as shown to query for information. These are just examples try any ticker :)" )
+    await ctx.send(embed = embed)
 
 
 # Command to add stocks to the watchlist
 @bot.command()
 async def AddStock(ctx, ticker):
+    global watchlist
     # Check if the ticker symbol is valid
     stock = yf.Ticker(ticker)
     try:
@@ -106,7 +110,7 @@ async def AddStock(ctx, ticker):
 
 @bot.command()
 async def WatchList(ctx):
-    watchlist = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD", "SBUX"]
+    global watchlist
     if len(watchlist) > 0:
         embed = discord.Embed(title="Watchlist - Current Price", color=discord.Color.green())
         for ticker in watchlist:
