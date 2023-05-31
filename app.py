@@ -63,18 +63,19 @@ async def t(ctx, ticker):
                 data_1 = data.iloc[0:4]  # OHLC for first candlestick
                 data_2 = data.iloc[4:8]  # OHLC for second candlestick
                 # Add more subsets for additional candlesticks if needed
-
+                print(f"data_1 {data_1}")
+                print(f"data2 {data_2}")
                 # Create a new figure and axis for the chart
                 fig, ax = plt.subplots(figsize=(8, 5))
 
                 # Plot each candlestick subset separately
               # Plot each candlestick subset separately
-            for idx, subset in enumerate([data_1, data_2]):
-                for i in range(len(subset)):
-                        if subset['Close'].iloc[i] >= subset['Open'].iloc[i]:
-                            ax.lines[idx * len(subset) + i].set_color('g')  # Set color to green for bullish candles
-                        else:
-                            ax.lines[idx * len(subset) + i].set_color('r')  # Set color to red for bearish candles
+            # for idx, subset in enumerate([data_1, data_2]):
+            #     for i in range(len(subset)):
+            #             if subset['Close'].iloc[i] >= subset['Open'].iloc[i]:
+            #                 ax.lines[idx * len(subset) + i].set_color('g')  # Set color to green for bullish candles
+            #             else:
+            #                 ax.lines[idx * len(subset) + i].set_color('r')  # Set color to red for bearish candles
 
                                 # Add more plots for additional candlesticks if needed
 
