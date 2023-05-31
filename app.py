@@ -62,11 +62,13 @@ async def t(ctx, ticker):
                 
                 # Create a dark-themed candlestick chart
                 mc = mpf.make_marketcolors(up='green', down='red')
-                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white',
-                                        candle_colorup='green', candle_colordown='red')
+                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
 
                 fig, ax = plt.subplots(figsize=(8, 5))
-                mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
+                mpf.plot(data, type='candle', ax=ax, volume=False, style=s,)
+
+                print("MPFPLOT", mpf.plot.to_string())
+                print("MPFMAKEMARKETCOLORS", mpf.make_marketcolors.to_string())
 
                 plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
                 plt.xlabel("Date", color='white')
@@ -79,6 +81,14 @@ async def t(ctx, ticker):
                 ax.spines['top'].set_color('white')
                 ax.spines['left'].set_color('white')
                 ax.spines['right'].set_color('white')
+
+                # Plot the candles with color based on close and opening prices
+                for i in range(len(data)):
+                    if data['Close'].iloc[i] >= data['Open'].iloc[i]:
+                        color = 'green'  # Green for bullish candles
+                    else:
+                        color = 'red'  # Red for bearish candles
+                    mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
 
                 # Save the chart as an image
                 image_stream = BytesIO()
@@ -104,6 +114,7 @@ async def t(ctx, ticker):
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
+
 
 
 
