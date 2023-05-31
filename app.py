@@ -61,34 +61,32 @@ async def t(ctx, ticker):
                 description += f"Current Price (15 min): ${current_price:.2f}"
                 
                 # Create a dark-themed candlestick chart
-                mc = mpf.make_marketcolors(up='green', down='red')
-                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
+            mc = mpf.make_marketcolors(up='green', down='red')
+            s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
 
-                fig, ax = plt.subplots(figsize=(8, 5))
-                mpf.plot(data, type='candle', ax=ax, volume=False, style=s,)
+            fig, ax = plt.subplots(figsize=(8, 5))
+            mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
 
-                print("MPFPLOT", mpf.plot)
-                print("MPFMAKEMARKETCOLORS", mpf.make_marketcolors)
+            plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
+            plt.xlabel("Date", color='white')
+            plt.ylabel("Price", color='white')
+            plt.xticks(color='white')
+            plt.yticks(color='white')
+            ax.xaxis.label.set_color('white')
+            ax.yaxis.label.set_color('white')
+            ax.spines['bottom'].set_color('white')
+            ax.spines['top'].set_color('white')
+            ax.spines['left'].set_color('white')
+            ax.spines['right'].set_color('white')
 
-                plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
-                plt.xlabel("Date", color='white')
-                plt.ylabel("Price", color='white')
-                plt.xticks(color='white')
-                plt.yticks(color='white')
-                ax.xaxis.label.set_color('white')
-                ax.yaxis.label.set_color('white')
-                ax.spines['bottom'].set_color('white')
-                ax.spines['top'].set_color('white')
-                ax.spines['left'].set_color('white')
-                ax.spines['right'].set_color('white')
+            # Plot the candles with color based on close and opening prices
+            for i in range(len(data)):
+                if data['Close'].iloc[i] >= data['Open'].iloc[i]:
+                    color = mc.candle_colorup  # Green for bullish candles
+                else:
+                    color = mc.candle_colordown  # Red for bearish candles
+                mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
 
-                # Plot the candles with color based on close and opening prices
-                for i in range(len(data)):
-                    if data['Close'].iloc[i] >= data['Open'].iloc[i]:
-                        color = 'green'  # Green for bullish candles
-                    else:
-                        color = 'red'  # Red for bearish candles
-                    mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
 
                 # Save the chart as an image
                 image_stream = BytesIO()
