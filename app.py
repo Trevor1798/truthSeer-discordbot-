@@ -8,6 +8,7 @@ import redis
 import matplotlib.pyplot as plt
 import mplfinance as mpf
 import pandas
+from io import BytesIO
 
 
 
@@ -35,7 +36,6 @@ def create_embed(description):
     embed = discord.Embed(description = description, color = discord.Color.orange())
     return embed
  
-from io import BytesIO
 
 @bot.command()
 async def t(ctx, ticker):
@@ -59,12 +59,24 @@ async def t(ctx, ticker):
                 color = discord.Color.purple()
                 description += f"Current Price (15 min): ${current_price:.2f}"
                 
-                # Create a candlestick chart
+                # Create subsets of data for each candlestick
+                data_1 = data.iloc[0:4]  # OHLC for first candlestick
+                data_2 = data.iloc[4:8]  # OHLC for second candlestick
+                # Add more subsets for additional candlesticks if needed
+
+                # Create a new figure and axis for the chart
                 fig, ax = plt.subplots(figsize=(8, 5))
-                mpf.plot(data, type='candle', ax=ax, volume=False)
+
+                # Plot each candlestick subset separately
+              # Plot each candlestick subset separately
+                mpf.plot(data_1, type='candle', ax=ax, volume=False, upcolor='g', downcolor='r')
+                mpf.plot(data_2, type='candle', ax=ax, volume=False, upcolor='g', downcolor='r')
+                # Add more plots for additional candlesticks if needed
+
                 plt.title(f"{ticker.upper()} Candlestick Chart")
                 plt.xlabel("Date")
                 plt.ylabel("Price")
+
                 
                 # Save the chart as an image
                 image_stream = BytesIO()
@@ -74,8 +86,8 @@ async def t(ctx, ticker):
                 # Create a file attachment from the image
                 file = discord.File(image_stream, filename="chart.png")
                 
-                # Add the chart image to the embed
-                embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
+                # Create the embed with the chart image
+                embed = create_embed(description)
                 embed.set_image(url="attachment://chart.png")
                 
                 # Send the embed with the chart image
@@ -84,12 +96,13 @@ async def t(ctx, ticker):
                 color = discord.Color.orange()
                 description += "No data available for current or previous price."
 
-            embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
+            embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
+
 
 
 @bot.command()
