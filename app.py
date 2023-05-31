@@ -377,9 +377,9 @@ async def AAPL(ctx):
 
 
 @bot.command()
-async def FB(ctx):
+async def META(ctx):
     try:
-        spy = yf.Ticker("FB")
+        spy = yf.Ticker("META")
         data = spy.history(period="15m")
         
         if len(data) > 0:
@@ -408,7 +408,7 @@ async def FB(ctx):
             embed = create_embed(description)
             await ctx.send(embed=embed)
         else:
-            await ctx.send("No data available for FB")
+            await ctx.send("No data available for META")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
 
@@ -593,7 +593,7 @@ async def StockWatch(ctx):
 
 @bot.command()
 async def WatchList(ctx):
-    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "FB", "DIS", "NFLX", "AMD", "HD"]
+    tickers = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "GOOGL", "AAPL", "META", "DIS", "NFLX", "AMD", "HD"]
     embed = discord.Embed(title = "WatchList", color=0x00FF00)
 
     for tick in tickers:
