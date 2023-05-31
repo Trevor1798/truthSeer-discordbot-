@@ -6,8 +6,6 @@ import requests
 import yfinance as yf
 
 
-
-
 target_channel_id = 1111186051520790550
 
 intents = discord.Intents.default()
@@ -606,10 +604,10 @@ async def SBUX(ctx):
 
 @bot.command()
 async def StockWatch(ctx):
- await ctx.send(f"""Hello! I've built sort of a small list of multiple different popular stocks from the market,
+ await ctx.send(f"""Hello! \n I've built sort of a small list of multiple different popular stocks from the market,
                     these are commonly traded and also some of my favorites
                     they'll include information about the daily opening price, current high of the day, current price, and previous price following the 15 minute chart.
-                    Here's a list of the Symbols you can query for (type them in exactly like this): \n
+                    Here's a list of the Symbols you can query for (type them in exactly like this):
                     !WatchList - this'll return information from every symbol all at once
                     !SPY
                     !QQQ
