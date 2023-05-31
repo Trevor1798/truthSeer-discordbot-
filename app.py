@@ -32,18 +32,17 @@ async def t(ctx, ticker):
     try:
         stock = yf.Ticker(ticker).history(period="1d")
 
-            daily_open = stock["Open"].iloc[0]
-            current_high = stock["High"].max()
-            previous_price = stock["Close"].iloc[-2]
+        daily_open = stock["Open"].iloc[0]
+        current_high = stock["High"].max()
+        previous_price = stock["Close"].iloc[-2]
             # previous_price = None
-
-            current_price = stock["Close"].iloc[-1]
+        current_price = stock["Close"].iloc[-1]
             # current_price = None
 
-            description = f"Daily Opening Price: ${daily_open:.2f}\n" \
+        description = f"Daily Opening Price: ${daily_open:.2f}\n" \
                           f"Current High of the Day: ${current_high:.2f}\n"
 
-            if current_price is not None and previous_price is not None:
+        if current_price is not None and previous_price is not None:
                 if current_price > previous_price:
                     color = discord.Color.green()
                     description += f"Current Price (15 min): ${current_price:.2f} (Up from previous)"
@@ -53,14 +52,14 @@ async def t(ctx, ticker):
                 else:
                     color = discord.Color.orange()
                     description += f"Current Price (15 min): ${current_price:.2f} (No change)"
-            else:
-                color = discord.Color.orange()
-                description += "No data available for current or previous price."
+        else:
+            color = discord.Color.orange()
+            description += "No data available for current or previous price."
 
             embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
             await ctx.send(embed=embed)
-        else:
-            await ctx.send(f"No data available for {ticker.upper()}")
+        # else:
+        #     await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
 
