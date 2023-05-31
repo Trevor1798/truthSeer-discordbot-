@@ -4,6 +4,7 @@ import os
 import asyncio
 import requests
 import yfinance as yf
+import random
 
 
 target_channel_id = 1111186051520790550
