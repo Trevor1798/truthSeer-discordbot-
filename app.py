@@ -59,50 +59,46 @@ async def t(ctx, ticker):
 
             if current_price is not None:
                 description += f"Current Price (15 min): ${current_price:.2f}"
-                
+
                 # Create a dark-themed candlestick chart
-            mc = mpf.make_marketcolors(up='green', down='red')
-            s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
+                mc = mpf.make_marketcolors(up='green', down='red')
+                s = mpf.make_mpf_style(marketcolors=mc, facecolor='black', edgecolor='white')
 
-            fig, ax = plt.subplots(figsize=(8, 5))
-            mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
+                fig, ax = plt.subplots(figsize=(8, 5))
+                mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
 
-            plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
-            plt.xlabel("Date", color='white')
-            plt.ylabel("Price", color='white')
-            plt.xticks(color='white')
-            plt.yticks(color='white')
-            ax.xaxis.label.set_color('white')
-            ax.yaxis.label.set_color('white')
-            ax.spines['bottom'].set_color('white')
-            ax.spines['top'].set_color('white')
-            ax.spines['left'].set_color('white')
-            ax.spines['right'].set_color('white')
+                plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
+                plt.xlabel("Date", color='white')
+                plt.ylabel("Price", color='white')
+                plt.xticks(color='white')
+                plt.yticks(color='white')
+                ax.xaxis.label.set_color('white')
+                ax.yaxis.label.set_color('white')
+                ax.spines['bottom'].set_color('white')
+                ax.spines['top'].set_color('white')
+                ax.spines['left'].set_color('white')
+                ax.spines['right'].set_color('white')
 
-            # Plot the candles with color based on close and opening prices
-            # for i in range(len(data)):
-            #     if data['Close'].iloc[i] >= data['Open'].iloc[i]:
-            #         color = mc['edge']['up']  # Green for bullish candles
-            #     else:
-            #         color = mc['edge']['down']  # Red for bearish candles
-            #     mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
-
-
-
-
+                # Plot the candles with color based on close and opening prices
+                # for i in range(len(data)):
+                #     if data['Close'].iloc[i] >= data['Open'].iloc[i]:
+                #         color = mc['edge']['up']  # Green for bullish candles
+                #     else:
+                #         color = mc['edge']['down']  # Red for bearish candles
+                #     mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
 
                 # Save the chart as an image
                 image_stream = BytesIO()
                 plt.savefig(image_stream, format='png', facecolor='black')
                 image_stream.seek(0)
-                
+
                 # Create a file attachment from the image
                 file = discord.File(image_stream, filename="chart.png")
-                
+
                 # Create the embed with the chart image
                 embed = create_embed(description)
                 embed.set_image(url="attachment://chart.png")
-                
+
                 # Send the embed with the chart image
                 await ctx.send(file=file, embed=embed)
             else:
@@ -115,6 +111,7 @@ async def t(ctx, ticker):
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
+
 
 
 
