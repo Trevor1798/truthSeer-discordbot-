@@ -604,27 +604,15 @@ async def SBUX(ctx):
 
 @bot.command()
 async def StockWatch(ctx):
- await ctx.send(f"""Hello! \n I've built sort of a small list of multiple different popular stocks from the market,
-these are commonly traded and also some of my favorites
-they'll include information about the daily opening price, current high of the day, current price, and previous price following the 15 minute chart.
-Here's a list of the Symbols you can query for (type them in exactly like this):
-!WatchList - this'll return information from every symbol all at once
-!SPY
-!QQQ
-!TSLA
-!AMZN
-!BA
-!NVDA
-!GME
-!GOOGLE
-!AAPL
-!FB
-!DIS
-!NFLX
-!AMD
-!HD
-!SBUX
-                    """)
+ embed = discord.Embed(
+    title = "Stock Watch",
+    description = "Hello! I've built a small list of popular stocks from the market. These are commonly traded and some of my favorites. They include information about the daily opening price, current high of the day, current price, and previous price following the 15-minute chart."
+    color = discord.Color.blue()
+ )
+
+ embed.add_field(name="Symbols", value = "!WatchList\n!SPY\n!QQQ\n!TSLA\n!AMZN\n!BA\n!NVDA\n!GME\n!GOOGLE\n!AAPL\n!FB\n!DIS\n!NFLX\n!AMD\n!HD\n!SBUX")
+ embed.set_footer(text ="Please type the symbols exactly as shown to query for information." )
+ await ctx.send(embed = embed)
 
 @bot.command()
 async def WatchList(ctx):
