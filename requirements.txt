@@ -3,3 +3,5 @@ discord.py
 requests
 yfinance
 redis
+mplfinance==0.12.7a17
+pandas

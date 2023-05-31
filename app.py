@@ -5,6 +5,10 @@ import asyncio
 import requests
 import yfinance as yf
 import redis
+import matplotlib.pyplot as plt
+import mplfinance as mpf
+import pandas
+
 
 
 redis_url = os.environ.get("REDISCLOUD_URL")
@@ -31,6 +35,8 @@ def create_embed(description):
     embed = discord.Embed(description = description, color = discord.Color.orange())
     return embed
  
+from io import BytesIO
+
 @bot.command()
 async def t(ctx, ticker):
     try:
@@ -50,19 +56,33 @@ async def t(ctx, ticker):
                           f"Current High of the Day: ${current_high:.2f}\n"
 
             if current_price is not None:
+                color = discord.Color.purple()
+                description += f"Current Price (15 min): ${current_price:.2f}"
                 
-                    color = discord.Color.purple()
-                    description += f"Current Price (15 min): ${current_price:.2f}"
+                # Create a candlestick chart
+                fig, ax = plt.subplots(figsize=(8, 5))
+                mpf.plot(data, type='candle', ax=ax, volume=False)
+                plt.title(f"{ticker.upper()} Candlestick Chart")
+                plt.xlabel("Date")
+                plt.ylabel("Price")
                 
+                # Save the chart as an image
+                image_stream = BytesIO()
+                plt.savefig(image_stream, format='png')
+                image_stream.seek(0)
+                
+                # Create a file attachment from the image
+                file = discord.File(image_stream, filename="chart.png")
+                
+                # Add the chart image to the embed
+                embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
+                embed.set_image(url="attachment://chart.png")
+                
+                # Send the embed with the chart image
+                await ctx.send(file=file, embed=embed)
             else:
                 color = discord.Color.orange()
                 description += "No data available for current or previous price."
-            
-            
-            
-            # print(f"Previous Price: {previous_price}")
-            print(f"Current Price: {current_price}")
-
 
             embed = discord.Embed(title=f"{ticker.upper()} Stock Information", description=description, color=color)
             await ctx.send(embed=embed)
@@ -70,6 +90,7 @@ async def t(ctx, ticker):
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
+
 
 @bot.command()
 async def StockWatch(ctx):
