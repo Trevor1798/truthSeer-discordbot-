@@ -79,7 +79,7 @@ async def StockWatch(ctx):
         color = discord.Color.gold()
     )
 
-    embed.add_field(name="Symbols", value = "!WatchList\n!t SPY\n!t QQQ\n!t TSLA\n!t AMZN\n!t BA\n!t NVDA\n!t GME\n!t GOOGLE\n!t AAPL\n!t FB\n!t DIS\n!t NFLX\n!t AMD\n!t HD\n!t SBUX")
+    embed.add_field(name="Symbols", value = "!WatchList (watchlist name)\n !AddStock (watchlist_name) (ticker) - This will add a stock to a specific watchlist and if there is none it will create one!\n !ListWatch - This will List of our WatchLists \n!t SPY\n!t QQQ\n!t TSLA\n!t AMZN\n!t BA\n!t NVDA\n!t GME\n!t GOOGLE\n!t AAPL\n!t FB\n!t DIS\n!t NFLX\n!t AMD\n!t HD\n!t SBUX")
     embed.set_footer(text ="Please type the symbols exactly as shown to query for information. These are just examples try any ticker :)" )
     await ctx.send(embed = embed)
 
