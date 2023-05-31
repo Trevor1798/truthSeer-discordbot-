@@ -82,10 +82,11 @@ async def t(ctx, ticker):
             # Plot the candles with color based on close and opening prices
             for i in range(len(data)):
                 if data['Close'].iloc[i] >= data['Open'].iloc[i]:
-                    color = mc['up']  # Green for bullish candles
+                    color = mc['edge']['up']  # Green for bullish candles
                 else:
-                    color = mc['down']  # Red for bearish candles
+                    color = mc['edge']['down']  # Red for bearish candles
                 mpf.plot(data.iloc[i:i+1], type='candle', ax=ax, volume=False, color=color, style=s)
+
 
 
 
