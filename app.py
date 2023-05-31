@@ -105,7 +105,7 @@ async def t(ctx, ticker):
         else:
             await ctx.send(f"No data available for {ticker.upper()}")
     except Exception as e:
-        await ctx.send(f"An
+          await ctx.send(f"An error occurred: {str(e)}")
 
 
 
