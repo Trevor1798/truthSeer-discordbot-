@@ -235,7 +235,6 @@ async def Sam(ctx):
 async def command_help(ctx):
     embed = discord.Embed(title="Available Commands", description="Here are the available commands:", color=discord.Color.purple())
     embed.add_field(name="!hello", value="Greet the bot", inline=False)
-    embed.add_field(name="!whatareyoudoing", value="Check what the bot is doing", inline=False)
     embed.add_field(name="!whatsup", value="Check what the bot is up to", inline=False)
     embed.add_field(name="!StockWatch", value="Look at a bunch of different options for querying stocks", inline=False)
     embed.add_field(name="!weather ('city')", value="Check the weather of any city included in the free tier of this API", inline=False)
