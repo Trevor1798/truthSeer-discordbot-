@@ -26,6 +26,10 @@ intents.messages = True
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+
+    
+    # The session and connector will be closed automatically
+
 WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
 
@@ -353,8 +357,12 @@ async def sauce(ctx, *tags):
                 data = await response.read()
                 file = discord.File(BytesIO(data), filename="image.jpg")
                 await ctx.send(file=file)
+                await session.close()
             else:
                 await ctx.send("Failed to retrieve the image.")
+                await session.close()
+                
+        
 
 
 
