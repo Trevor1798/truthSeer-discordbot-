@@ -9,6 +9,5 @@ pandas
 waifuim.py
 aiohttp
 pocketsphinx
-portaudio
-pyaudio==0.2.11
+pyaudio==0.2.13 --find-links=file:\\wsl.localhost\Ubuntu\home\itachi\newWsl\Truthseer\py-wheel
 
