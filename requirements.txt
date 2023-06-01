@@ -13,4 +13,4 @@ pyaudio==0.2.13 --find-links=file:\\wsl.localhost\Ubuntu\home\itachi\newWsl\Trut
 SpeechRecognition==3.8.1
 gTTS
 playsound
-
+pynacl==1.4.0
