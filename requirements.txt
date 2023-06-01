@@ -9,4 +9,6 @@ pandas
 waifuim.py
 aiohttp
 pocketsphinx
-pyaudio
+pyaudio==0.2.11
+portaudio19-dev
+
