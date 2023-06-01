@@ -8,6 +8,7 @@ import redis
 import matplotlib.pyplot as plt
 import mplfinance as mpf
 import pandas
+
 from io import BytesIO
 
 
@@ -1047,3 +1048,14 @@ bot.run(os.environ["BOT_TOKEN"])
 #             await ctx.send("No data available for SBUX")
 #     except Exception as e:
 #         await ctx.send(f"An error occurred: {str(e)}")
+
+from waifuim import WaifuAioClient
+@bot.command()
+async def sauce(ctx, *tags):
+    wf = WaifuAioClient()
+    if tags:
+        image = await wf.search(included_tags = tags)
+    else:
+        image = wf.search()
+
+    await ctx.send(file = image.url)
