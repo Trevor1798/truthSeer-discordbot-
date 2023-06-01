@@ -19,13 +19,13 @@ engine = pyttsx3.init()
 #Function to encapsulate speech, call it in the command functions
 def recognize_speech():
     r = sr.Recognizer()
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index=0) as source:
         print("Listening...")
         audio = r.listen(source)
     
     # Perform speech recognition on the captured audio
     try:
-        text = r.recognize_google(audio)
+        text = r.recognize_sphinx(audio)
         return text
     except sr.UnknownValueError:
         print("Speech recognition could not understand audio")
@@ -46,7 +46,7 @@ async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
     speech_text = recognize_speech()
-    
+
 
 @bot.command()
 async def leave(ctx):
