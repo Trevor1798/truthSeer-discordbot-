@@ -21,6 +21,8 @@ redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
 
+target_channel_id = os.environ.get("TARGET_CHANNEL_ID")
+
 
 intents = discord.Intents.default()
 intents.guilds = True
@@ -56,7 +58,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 @bot.event
 async def on_ready():
     print("Bot is ready. Logged in as", bot.user)
-    target_channel_id = os.environ.get("TARGET_CHANNEL_ID")
+ 
     target_channel = bot.get_channel(target_channel_id)
     if target_channel:
         await target_channel.send("Bot connected to the target channel.")
