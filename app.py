@@ -67,7 +67,7 @@ async def t(ctx, ticker):
                 fig, ax = plt.subplots(figsize=(12, 9))
                 mpf.plot(data, type='candle', ax=ax, volume=False, style=s)
 
-                plt.title(f"{ticker.upper()} Candlestick Chart", color='white')
+                plt.title(f"{ticker.upper()} Candlestick Chart", color='grey')
                 plt.xlabel("Date", color='orange')
                 plt.ylabel("Time", color='orange')
                 plt.xticks(color='grey')
@@ -277,7 +277,9 @@ async def kitty10x(ctx):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
+        print("data", data)
         cat_image = data[0]["url"]
+        print(cat_image)
         await ctx.send(cat_image)
     else:
         await ctx.send("Maybe 10 is to many right neow")
