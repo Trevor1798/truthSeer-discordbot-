@@ -342,7 +342,7 @@ async def sauce(ctx, *tags):
     if tags:
         image = await wf.search(included_tags = tags)
     else:
-        image = wf.search()
+        image = await wf.search()
 
     await ctx.send(file = image.url)
 @bot.command()
