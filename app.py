@@ -351,10 +351,11 @@ async def sauce(ctx, *tags):
         async with session.get(image.url) as response:
             if response.status == 200:
                 data = await response.read()
-                file = discord.File(data, filename="image.jpg")
+                file = discord.File(BytesIO(data), filename="image.jpg")
                 await ctx.send(file=file)
             else:
                 await ctx.send("Failed to retrieve the image.")
+
 
 
 @bot.command()
