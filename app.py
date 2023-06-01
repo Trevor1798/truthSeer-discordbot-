@@ -279,7 +279,7 @@ async def kitty10x(ctx):
         data = response.json()
         print("data", data)
         cat_image = data[0]["url"]
-        print(cat_image)
+        print("CATIMAGE",cat_image)
         await ctx.send(cat_image)
     else:
         await ctx.send("Maybe 10 is to many right neow")
