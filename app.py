@@ -21,7 +21,7 @@ redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
 
-target_channel_id = os.environ["TARGET_CHANNEL_ID"]
+target_channel_id = 1111186051520790550
 
 
 intents = discord.Intents.default()
@@ -53,6 +53,13 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 # bot.add_command(command_help)
 
 
+# Add error handling and command_not_found event
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send("Command not found.")
+    else:
+        print("Error:", error)
 
 
 @bot.event
@@ -66,22 +73,19 @@ async def on_ready():
         print(f"Failed to find the target channel with ID: {target_channel_id}")
 
 
-# Load and register commands from separate files
-extensions = ["stock_commands", "friend_commands", "api_commands"]
-for extension in extensions:
-    bot.load_extension(extension)
-
-
-
-# Add error handling and command_not_found event
-@bot.event
-async def on_command_error(ctx, error):
-    if isinstance(error, commands.CommandNotFound):
-        await ctx.send("Command not found.")
-    else:
-        print("Error:", error)
-
-
+async def start():
+    extensions = [
+        'stock_commands',
+        'friend_commands',
+        'api_commands'
+    ]
+    for extension in extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print(f"Failed to load extension {extension}: {e}")
+            
+        await start()
 
 
 
