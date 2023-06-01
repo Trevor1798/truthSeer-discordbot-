@@ -3,6 +3,7 @@ discord.py
 requests
 yfinance
 redis
+hmtai
 mplfinance==0.12.7a17
 pandas
 waifuim.py

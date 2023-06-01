@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 from waifuim import WaifuAioClient
 import mplfinance as mpf
 import pandas
+import hmtai
 from io import BytesIO
 import aiohttp
 
@@ -391,6 +392,11 @@ Beyond his passion for entertainment, Chris is also a future goated programmer. 
 In summary, Chris is a remarkable individual who brings laughter, knowledge, and ambition to everything he does. Whether it's cracking jokes, sharing anime trivia, or diving into the world of programming, his infectious energy and passion are an inspiration to all. With his incredible sense of humor, wealth of anime and gaming knowledge, and his drive to excel in programming, Chris is destined to leave a lasting impact and become a goated programmer in the future.""")
     embed.color = discord.Color.teal()
     await ctx.send(embed=embed)
+
+@bot.command()
+async def hmm(ctx, tag):
+    picture_link = hmtai.get("hmtai", tag)
+    await ctx.send(picture_link)
 
 @bot.command()
 async def Trev(ctx):
