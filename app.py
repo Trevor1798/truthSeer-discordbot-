@@ -343,29 +343,26 @@ async def whatsup(ctx):
 
 
 
+@bot.command()
 async def sauce(ctx, *tags):
-    try:
-        wf = WaifuAioClient()
-        if tags:
-            image = await wf.search(included_tags=tags)
-        else:
-            image = await wf.search()
+    wf = WaifuAioClient()
+    if tags:
+        image = await wf.search(included_tags=tags)
+    else:
+        image = await wf.search()
 
-        async with aiohttp.ClientSession() as session:
-            async with session.get(image.url) as response:
-                if response.status == 200:
-                    data = await response.read()
-                    file = discord.File(BytesIO(data), filename="image.jpg")
-                    await ctx.send(file=file)
-                else:
-                    await ctx.send("Failed to retrieve the image.")
-    except APIException as e:
-        await ctx.send(f"Error: {e}")  # Display the error message to the user
-    except Exception as e:
-        await ctx.send("An error occurred while processing the command.")
-        print(e)  # Log the error for debugging purposes
-
-    # The session will be closed automatically when exiting the async with block
+    async with aiohttp.ClientSession() as session:
+        async with session.get(image.url) as response:
+            if response.status == 200:
+                data = await response.read()
+                file = discord.File(BytesIO(data), filename="image.jpg")
+                await ctx.send(file=file)
+                await session.close()
+            else:
+                await ctx.send("Failed to retrieve the image.")
+                await session.close()
+                
+        
 
 
 
