@@ -277,10 +277,9 @@ async def kitty10x(ctx):
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
         data = response.json()
-        print("data", data)
-        cat_image = data[0]["url"]
-        print("CATIMAGE",cat_image)
-        await ctx.send(cat_image)
+        for cat_data in data:
+            cat_image = cat_data["url"]
+            await ctx.send(cat_image)
     else:
         await ctx.send("Maybe 10 is to many right neow")
 
