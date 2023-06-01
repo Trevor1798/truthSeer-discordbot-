@@ -6,3 +6,4 @@ redis
 mplfinance==0.12.7a17
 pandas
 waifuim.py
+aiohttp
