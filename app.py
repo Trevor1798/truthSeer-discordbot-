@@ -14,6 +14,7 @@ import aiohttp
 from stock_commands import *
 from friend_commands import *
 from api_commands import *
+from voice_recognition_commands import *
 
 
 
@@ -50,6 +51,10 @@ bot.add_command(Chris)
 bot.add_command(Trev)
 bot.add_command(Sam)
 bot.add_command(command_help)
+bot.add_command(join)
+bot.add_command(leave)
+# bot.add_command(mute_everyone)
+# bot.add_command(unmute_everyone)
 
 
 
