@@ -279,7 +279,9 @@ async def kitty10x(ctx):
         data = response.json()
         for cat_data in data:
             cat_image = cat_data["url"]
-            await ctx.send(cat_image)
+            embed = discord.Embed()
+            embed.set_image(url=cat_image)
+            await ctx.send(embed=embed)
     else:
         await ctx.send("Maybe 10 is to many right neow")
 
