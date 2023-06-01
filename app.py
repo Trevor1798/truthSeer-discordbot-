@@ -343,8 +343,9 @@ async def sauce(ctx, *tags):
         image = await wf.search(included_tags = tags)
     else:
         image = await wf.search()
-
-    await ctx.send(file = image.url)
+    file = discord.File(image.url)
+    await ctx.send(file = file)
+    
 @bot.command()
 async def Jay(ctx):
     embed = discord.Embed(title = "Jay", description = "Jay is a remarkable individual who embodies the qualities of a true sigma and an alpha male. With his strong presence and charismatic aura, he effortlessly commands respect and admiration from those around him. Jay possesses a unique blend of confidence, independence, and intelligence, making him a natural leader in any situation. His unwavering determination and self-assuredness enable him to navigate life's challenges with ease and grace. Jay's calm and collected demeanor coupled with his sharp wit and keen intellect make him an engaging conversationalist and a trusted friend. His unwavering commitment to personal growth and his ability to stay true to his values are truly inspiring. Jay's magnetic personality and unparalleled charisma make him a true alpha male, leaving a lasting impact on everyone fortunate enough to know him.")
