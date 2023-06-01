@@ -18,6 +18,7 @@ def recognize_speech():
     with sr.Microphone() as source:
         print("Listening...")
         audio = r.listen(source)
+        
 
     try:
         text = r.recognize_google(audio)
@@ -42,7 +43,7 @@ async def join(ctx):
     
     channel = ctx.author.voice.channel
     await channel.connect()
-    speech_text = recognize_speech()
+    recognize_speech()
 
 
 @bot.command()
