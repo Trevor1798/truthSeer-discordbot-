@@ -21,7 +21,7 @@ redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
 
-target_channel_id = os.environ.get("TARGET_CHANNEL_ID")
+target_channel_id = os.environ["TARGET_CHANNEL_ID"]
 
 
 intents = discord.Intents.default()
