@@ -2,7 +2,8 @@ import discord
 from discord.ext import commands 
 import os
 import speech_recognition as sr
-import pyttsx
+from gtts import gTTS
+import playsound
 
 
 intents = discord.Intents.default()
@@ -10,22 +11,16 @@ intents.voice_states = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-engine = pyttsx3.init()
 
-
-
-
-
-#Function to encapsulate speech, call it in the command functions
+# Function to encapsulate speech recognition, call it in the command functions
 def recognize_speech():
     r = sr.Recognizer()
-    with sr.Microphone(device_index=0) as source:
+    with sr.Microphone() as source:
         print("Listening...")
         audio = r.listen(source)
-    
-    # Perform speech recognition on the captured audio
+
     try:
-        text = r.recognize_sphinx(audio)
+        text = r.recognize_google(audio)
         return text
     except sr.UnknownValueError:
         print("Speech recognition could not understand audio")
@@ -33,9 +28,11 @@ def recognize_speech():
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
     return ""
 
+
 # Example usage
 # text = recognize_speech()
 # print("You said:", text)
+
 
 @bot.command()
 async def join(ctx):
@@ -66,15 +63,20 @@ async def mute_everyone(ctx):
                 if member != ctx.author:
                     await member.edit(mute=True)
 
-            engine.say("I've muted everyone sir")
-            engine.runAndWait()
+            tts = gTTS("I've muted everyone, sir")
+            tts.save("muted.mp3")
+            playsound.playsound("muted.mp3", True)
+            os.remove("muted.mp3")
         else:
-            engine.say("It didn't work sir")
-            engine.runAndWait()
-        
+            tts = gTTS("It didn't work, sir")
+            tts.save("error.mp3")
+            playsound.playsound("error.mp3", True)
+            os.remove("error.mp3")
     else:
-        engine.say("Sir, your command was invalid")
-        engine.runAndWait()
+        tts = gTTS("Sir, your command was invalid")
+        tts.save("invalid.mp3")
+        playsound.playsound("invalid.mp3", True)
+        os.remove("invalid.mp3")
 
 
 async def unmute_everyone(ctx):
@@ -88,12 +90,17 @@ async def unmute_everyone(ctx):
                 if member != ctx.author:
                     await member.edit(mute=False)
 
-            engine.say("I've muted everyone sir")
-            engine.runAndWait()
+            tts = gTTS("I've unmuted everyone, sir")
+            tts.save("unmuted.mp3")
+            playsound.playsound("unmuted.mp3", True)
+            os.remove("unmuted.mp3")
         else:
-            engine.say("It didn't work sir")
-            engine.runAndWait()
-        
+            tts = gTTS("It didn't work, sir")
+            tts.save("error.mp3")
+            playsound.playsound("error.mp3", True)
+            os.remove("error.mp3")
     else:
-        engine.say("Sir, your command was invalid")
-        engine.runAndWait()
+        tts = gTTS("Sir, your command was invalid")
+        tts.save("invalid.mp3")
+        playsound.playsound("invalid.mp3", True)
+        os.remove("invalid.mp3")
