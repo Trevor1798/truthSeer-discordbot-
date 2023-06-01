@@ -12,4 +12,3 @@ pocketsphinx
 pyaudio==0.2.13 --find-links=file:\\wsl.localhost\Ubuntu\home\itachi\newWsl\Truthseer\py-wheel
 SpeechRecognition==3.8.1
 pyttsx
-pulseaudio
