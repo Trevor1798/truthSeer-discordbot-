@@ -6,9 +6,9 @@ import requests
 import yfinance as yf
 import redis
 import matplotlib.pyplot as plt
+from waifuim import WaifuAioClient
 import mplfinance as mpf
 import pandas
-
 from io import BytesIO
 
 
@@ -336,6 +336,15 @@ async def whatsup(ctx):
     await asyncio.sleep(2)  # Wait for another 10 seconds
     await ctx.send("Just hanging around")
 
+@bot.command()
+async def sauce(ctx, *tags):
+    wf = WaifuAioClient()
+    if tags:
+        image = await wf.search(included_tags = tags)
+    else:
+        image = wf.search()
+
+    await ctx.send(file = image.url)
 @bot.command()
 async def Jay(ctx):
     embed = discord.Embed(title = "Jay", description = "Jay is a remarkable individual who embodies the qualities of a true sigma and an alpha male. With his strong presence and charismatic aura, he effortlessly commands respect and admiration from those around him. Jay possesses a unique blend of confidence, independence, and intelligence, making him a natural leader in any situation. His unwavering determination and self-assuredness enable him to navigate life's challenges with ease and grace. Jay's calm and collected demeanor coupled with his sharp wit and keen intellect make him an engaging conversationalist and a trusted friend. His unwavering commitment to personal growth and his ability to stay true to his values are truly inspiring. Jay's magnetic personality and unparalleled charisma make him a true alpha male, leaving a lasting impact on everyone fortunate enough to know him.")
@@ -1048,14 +1057,3 @@ bot.run(os.environ["BOT_TOKEN"])
 #             await ctx.send("No data available for SBUX")
 #     except Exception as e:
 #         await ctx.send(f"An error occurred: {str(e)}")
-
-from waifuim import WaifuAioClient
-@bot.command()
-async def sauce(ctx, *tags):
-    wf = WaifuAioClient()
-    if tags:
-        image = await wf.search(included_tags = tags)
-    else:
-        image = wf.search()
-
-    await ctx.send(file = image.url)
