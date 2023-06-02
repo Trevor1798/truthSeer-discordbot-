@@ -2,3 +2,5 @@ portaudio19-dev
 espeak
 libpulse0
 libespeak1
+libpulse-dev
+
