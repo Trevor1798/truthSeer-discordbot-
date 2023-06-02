@@ -11,7 +11,14 @@ import mplfinance as mpf
 import pandas
 from io import BytesIO
 import aiohttp
+from dotenv import load_dotenv
 
+
+#load_dotenv()
+#Local Source
+#redis_url = os.getenv("REDISCLOUD_URL")
+
+#Heroku Source
 redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
@@ -21,7 +28,14 @@ intents.messages = True
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+#LOCAL
+#WEATHER_KEY = os.getenv("API_WEATHER_KEY")
 
+#LOCAL
+#BASE_URL = os.getenv("WEATHER_API_URL")
+
+
+#HEROKU
 WEATHER_KEY = os.environ.get("API_WEATHER_KEY")
 BASE_URL = os.environ.get("WEATHER_API_URL")
 
@@ -46,7 +60,7 @@ async def weather(ctx, city):
         humidity = weather_data["main"]["humidity"]
         wind_speed = weather_data["wind"]["speed"]
         weather_description = weather_data["weather"][0]["description"]
-    
+
         if response.status_code == 200:
             embed = discord.Embed(title=f"Weather in {city}", color=discord.Colour.teal())
             embed.add_field(name="Description", value=weather_description)
@@ -64,7 +78,10 @@ async def weather(ctx, city):
 #Cat API function
 @bot.command()
 async def cat(ctx):
+    #HEROKU
     api_key = os.environ.get("CAT_API_KEY")
+    #LOCAL
+    #api_key = os.getenv("CAT_API_KEY")
     headers = {
         "x-api-key": api_key
     }
@@ -78,7 +95,10 @@ async def cat(ctx):
         await ctx.send("Failed to fetch the cat image")
 @bot.command()
 async def kitty10x(ctx):
+    #HEROKU
     api_key = os.environ.get("CAT_API_KEY")
+    #LOCAL
+    #api_key = os.getenv("CAT_API_KEY")
     headers = {
         "x-api-key": api_key
     }
@@ -94,7 +114,7 @@ async def kitty10x(ctx):
     else:
         await ctx.send("Maybe 10 is to many right neow")
 
-#Joke API function    
+#Joke API function
 @bot.command()
 async def joke(ctx, category="Any"):
     url = f"https://v2.jokeapi.dev/joke/{category}"
@@ -145,5 +165,3 @@ async def sauce(ctx, *tags):
                     await ctx.send("Failed to retrieve the image.")
 
     await session.close()
-
-        

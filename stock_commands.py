@@ -11,8 +11,15 @@ import mplfinance as mpf
 import pandas
 from io import BytesIO
 import aiohttp
+from dotenv import load_dotenv
 
-redis_url = os.environ.get("REDISCLOUD_URL")
+
+#load_dotenv()
+
+#LOCAL
+redis_url = os.getenv("REDISCLOUD_URL")
+#HEROKU
+#redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
 intents = discord.Intents.default()
@@ -28,7 +35,7 @@ watchlists["Pineapple"] = ["SPY", "QQQ", "TSLA", "AMZN", "BA", "NVDA", "GME", "G
 def create_embed(description):
     embed = discord.Embed(description = description, color = discord.Color.orange())
     return embed
- 
+
 
 @bot.command()
 async def t(ctx, ticker):
@@ -128,12 +135,12 @@ async def AddStock(ctx, watchlist_name, ticker):
     except Exception as e:
         await ctx.send(f"An error occurred: {str(e)}")
         return
-    
+
     if len(data) > 0:
         # Check if the watchlist already exists, create a new one if it doesn't
         if watchlist_name not in watchlists:
             watchlists[watchlist_name] = []
-        
+
         # Add the stock to the chosen watchlist
         if ticker not in watchlists[watchlist_name]:
             watchlists[watchlist_name].append(ticker)
@@ -180,12 +187,12 @@ async def WatchList(ctx, watchlist_name):
 @bot.command()
 async def ListWatch(ctx):
     global watchlists
-    
+
     # Create an embedded message with a gold color
     embed = discord.Embed(title="Watchlists", color=discord.Color.gold())
-    
 
-    keys = r.keys()  
+
+    keys = r.keys()
 
     for key in keys:
         watchlist_name = key.decode()  # Convert the key to string
@@ -198,7 +205,7 @@ async def ListWatch(ctx):
     for watchlist_name, stocks in watchlists.items():
         if watchlist_name not in r.keys():
             # Create a string representation of the stocks in the watchlist
-            stocks_str = "\n".join(stocks) if stocks else "No stocks in this watchlist."    
+            stocks_str = "\n".join(stocks) if stocks else "No stocks in this watchlist."
 
 
     # Send the embedded message
