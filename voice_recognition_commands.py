@@ -43,12 +43,6 @@ def recognize_speech():
     return ""
 
 
-
-# Example usage
-# text = recognize_speech()
-# print("You said:", text)
-
-
 @bot.command()
 async def join(ctx):
     if ctx.author.voice is None:
