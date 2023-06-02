@@ -3,4 +3,5 @@ espeak
 libpulse0
 libespeak1
 libpulse-dev
+libgirepository1.0-dev
 
