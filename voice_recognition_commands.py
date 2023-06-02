@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import os
-import SpeechRecognition as sr
+import speech_recognition as sr
 
 intents = discord.Intents.default()
 intents.voice_states = True
@@ -73,4 +73,6 @@ async def leave(ctx):
     voice_client = ctx.guild.voice_client
     if voice_client is not None:
         await voice_client.disconnect()
+
+
 
