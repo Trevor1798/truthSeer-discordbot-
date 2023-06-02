@@ -26,6 +26,14 @@ def create_embed(description):
     embed = discord.Embed(description = description, color = discord.Color.orange())
     return embed
 
+@bot.command()
+async def Remy(ctx):
+    embed = discord.Embed(title = "Remy", description= "Oh, Remy, the little adventurer with a heart full of joy and a spirit that knows no bounds. With each playful leap and bound, he fills the house with laughter and delight. Like Puss in Boots, he dances with grace and mischief, captivating everyone with his innocent charm. In the soft glow of the evening, as Remy sips his milk, his eyes twinkle with wonder and his smile reflects pure contentment. His tiny footsteps echo through the halls as he explores every nook and cranny, leaving trails of joy in his wake. In those precious moments, when your wife catches sight of Remy, her eyes sparkle with a love that knows no limits. She sees his enthusiasm for life and cherishes the way he brings magic into every corner of your home. May Remy's laughter and boundless energy continue to fill your lives with warmth and joy, creating countless memories that will forever be etched in your hearts.")
+    embed.color = discord.Color.teal()
+    #print("Remy command call")
+    await ctx.send(embed=embed)
+
+
 
 @bot.command()
 async def Jay(ctx):
@@ -84,6 +92,7 @@ async def command_help(ctx):
     embed.add_field(name="!Frank", value="Discover more about Frank, a legendary multi-title esports champion who has retired", inline=False)
     embed.add_field(name="!Vam", value="Explore the accomplishments of Vam, the best options trader and osu player of all time", inline=False)
     embed.add_field(name="!Chris", value="Learn about Chris, a hilarious storyteller, anime and OG games expert, and future goated programmer", inline=False)
+    embed.add_field(name ="!Remy", value = "See what this little one has to offer in his carefree adventurous life!", inline=False)
     embed.add_field(name="!Trev", value="Discover the indescribable essence of Trev, a person who defies conventional descriptions", inline=False)
     embed.add_field(name="!Sam", value="Learn about Sam, an exceptional individual who is simply the best", inline=False)
     embed.add_field(name="!help", value="Display this help message", inline=False)

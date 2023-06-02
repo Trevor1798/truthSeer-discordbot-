@@ -14,10 +14,15 @@ import aiohttp
 from stock_commands import *
 from friend_commands import *
 from api_commands import *
+from chriswork import *
+from dotenv import load_dotenv
 # from voice_recognition_commands import *
 
+#load_dotenv()
 
-
+#LOCAL
+#redis_url = os.getenv("REDISCLOUD_URL")
+#HEROKU
 redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
@@ -50,7 +55,9 @@ bot.add_command(Vam)
 bot.add_command(Chris)
 bot.add_command(Trev)
 bot.add_command(Sam)
+bot.add_command(Remy)
 bot.add_command(command_help)
+
 # bot.add_command(join)
 # bot.add_command(leave)
 # bot.add_command(mute_everyone)
@@ -70,9 +77,9 @@ async def on_ready():
 
 
 
-extensions = ["stock_commands", "friend_commands", "api_commands"]
-for extension in extensions:
-    bot.load_extension(extension)
+#extensions = ["stock_commands", "friend_commands", "api_commands"]
+#for extension in extensions:
+ #   bot.load_extension(extension)
 
 
 # Add error handling and command_not_found event
@@ -86,6 +93,7 @@ async def on_command_error(ctx, error):
 
 
 
-
-
+#LOCAL
+#bot.run(os.getenv("BOT_TOKEN"))
+#HEROKU
 bot.run(os.environ["BOT_TOKEN"])
