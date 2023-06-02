@@ -25,6 +25,39 @@ def recognize_speech():
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
     return ""
 
+@bot.event
+async def on_ready():
+    print(f"Bot is ready. Logged in as {bot.user}")
+
+@bot.event
+async def on_voice_state_update(member, before, after):
+    if member == bot.user:
+        return
+
+    if before.channel is None and after.channel is not None:
+        # User has joined a voice channel
+        if member == bot.user:
+            # Bot has joined the voice channel
+            speech_text = recognize_speech()
+
+            if "Yooo Jarvis mute these" in speech_text:
+                channel = after.channel
+
+                for member in channel.members:
+                    if member != bot.user:
+                        await member.edit(mute=True)
+
+                print("Muted everyone")
+            elif "Jarvis unmute" in speech_text:
+                channel = after.channel
+
+                for member in channel.members:
+                    if member != bot.user:
+                        await member.edit(mute=False)
+
+                print("Unmuted everyone")
+            else:
+                print("Invalid command")
 
 @bot.command()
 async def join(ctx):
@@ -35,49 +68,9 @@ async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
 
-
 @bot.command()
 async def leave(ctx):
     voice_client = ctx.guild.voice_client
     if voice_client is not None:
         await voice_client.disconnect()
 
-
-@bot.command()
-async def mute_everyone(ctx):
-    speech_text = recognize_speech()
-
-    if "Yooo Jarvis mute these" in speech_text:
-        if ctx.author.voice and ctx.author.voice.channel:
-            channel = ctx.author.voice.channel
-
-            for member in channel.members:
-                if member != ctx.author:
-                    await member.edit(mute=True)
-
-            await ctx.send("I've muted everyone, sir")
-        else:
-            await ctx.send("It didn't work, sir")
-
-    else:
-        await ctx.send("Sir, your command was invalid")
-
-
-@bot.command()
-async def unmute_everyone(ctx):
-    speech_text = recognize_speech()
-
-    if "Jarvis unmute" in speech_text:
-        if ctx.author.voice and ctx.author.voice.channel:
-            channel = ctx.author.voice.channel
-
-            for member in channel.members:
-                if member != ctx.author:
-                    await member.edit(mute=False)
-
-            await ctx.send("I've unmuted everyone, sir")
-        else:
-            await ctx.send("It didn't work, sir")
-
-    else:
-        await ctx.send("Sir, your command was invalid")
