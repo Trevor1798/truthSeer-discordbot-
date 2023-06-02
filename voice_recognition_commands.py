@@ -92,5 +92,3 @@ async def leave(ctx):
     voice_client = ctx.guild.voice_client
     if voice_client is not None:
         await voice_client.disconnect()
-
-bot.run("YOUR_BOT_TOKEN")
