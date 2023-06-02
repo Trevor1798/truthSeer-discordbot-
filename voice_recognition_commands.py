@@ -4,6 +4,21 @@ import os
 import speech_recognition as sr
 from gtts import gTTS
 import playsound
+import pulsectl
+
+
+# Set the audio backend to PulseAudio
+sr.AudioFile.DEFAULT_READER = "pulseaudio"
+
+pulse = pulsectl.Pulse('my-client')
+
+def set_default_source():
+    source_info = pulse.source_list()[0]
+    default_source = pulse.get_source_by_index(source_info.index)
+    pulse.default_set_source(default_source)
+
+set_default_source()
+
 
 
 intents = discord.Intents.default()
@@ -15,7 +30,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 # Function to encapsulate speech recognition, call it in the command functions
 def recognize_speech():
     r = sr.Recognizer()
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index=pulsectl.Pulse('my-client').source_list()[0].index) as source:
         print("Listening...")
         audio = r.listen(source)
     try:
@@ -28,6 +43,7 @@ def recognize_speech():
     return ""
 
 
+
 # Example usage
 # text = recognize_speech()
 # print("You said:", text)
@@ -38,17 +54,25 @@ async def join(ctx):
     if ctx.author.voice is None:
         await ctx.send("You must be in a voice channel to use this command.")
         return
-    
-    channel = ctx.author.voice.channel
-    await channel.connect()
-    recognize_speech()
+    try:
+        channel = ctx.author.voice.channel
+        await channel.connect()
+        set_default_source() 
+        recognize_speech()
+    except Exception as e:
+        print("An error occurred while joining the voice channel:", e)
+        await ctx.send("An error occurred while joining the voice channel.")
 
 
 @bot.command()
 async def leave(ctx):
     voice_client = ctx.guild.voice_client
     if voice_client is not None:
-        await voice_client.disconnect()
+        try:
+            await voice_client.disconnect()
+        except Exception as e:
+            print("An error occurred while leaving the voice channel:", e)
+            await ctx.send("An error occurred while leaving the voice channel.")
 
 
 async def mute_everyone(ctx):
