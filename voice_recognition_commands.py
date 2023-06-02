@@ -98,6 +98,8 @@ async def mute_everyone(ctx):
         os.remove("invalid.mp3")
 
 
+
+
 async def unmute_everyone(ctx):
     speech_text = recognize_speech()
 

@@ -15,5 +15,5 @@ gTTS
 pynacl==1.4.0
 pydub==0.25.1
 playsound
-pulsectl==21.4.1
+pulsectl==21.3.4
 
