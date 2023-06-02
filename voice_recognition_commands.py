@@ -10,6 +10,8 @@ import pulsectl
 # Set the audio backend to PulseAudio
 sr.AudioFile.DEFAULT_READER = "pulseaudio"
 
+
+
 pulse = pulsectl.Pulse('my-client')
 
 def set_default_source():
