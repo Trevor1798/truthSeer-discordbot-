@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import os
-import speech_recognition as sr
+import SpeechRecognition as sr
 
 intents = discord.Intents.default()
 intents.voice_states = True
