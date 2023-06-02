@@ -53,8 +53,8 @@ bot.add_command(Sam)
 bot.add_command(command_help)
 bot.add_command(join)
 bot.add_command(leave)
-# bot.add_command(mute_everyone)
-# bot.add_command(unmute_everyone)
+bot.add_command(mute_everyone)
+bot.add_command(unmute_everyone)
 
 
 
