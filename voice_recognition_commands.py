@@ -59,7 +59,7 @@ async def on_voice_state_update(member, before, after):
                 print("Unmuted everyone")
             else:
                 print("Invalid command")
-
+@bot.command()
 async def join(ctx):
     if ctx.author.voice is None:
         await ctx.send("You must be in a voice channel to use this command.")
