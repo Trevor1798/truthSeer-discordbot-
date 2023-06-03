@@ -11,7 +11,7 @@ import mplfinance as mpf
 import pandas
 from io import BytesIO
 import aiohttp
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 
 #load_dotenv()
