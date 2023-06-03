@@ -15,7 +15,7 @@ from stock_commands import *
 from friend_commands import *
 from api_commands import *
 from chriswork import *
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 # from voice_recognition_commands import *
 
 #load_dotenv()
