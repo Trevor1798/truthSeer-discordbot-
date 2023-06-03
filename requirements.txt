@@ -14,5 +14,5 @@ SpeechRecognition==3.8.1
 gTTS
 pynacl==1.4.0
 pydub==0.25.1
-dotenv
+
 
