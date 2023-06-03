@@ -120,7 +120,8 @@ async def joke(ctx, category="Any"):
     url = f"https://v2.jokeapi.dev/joke/{category}"
     response = requests.get(url)
     joke_data = response.json()
-
+    if category == "Chris" or category == "Jay":
+        await ctx.send("Not worth my time")
     if response.status_code == 200:
         if joke_data["type"] == "single":
             joke = joke_data["joke"]
