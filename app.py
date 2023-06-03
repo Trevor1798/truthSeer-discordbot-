@@ -23,6 +23,7 @@ from dotenv import load_dotenv
 #LOCAL
 #redis_url = os.getenv("REDISCLOUD_URL")
 #HEROKU
+
 redis_url = os.environ.get("REDISCLOUD_URL")
 r = redis.Redis.from_url(redis_url)
 
